@@ -1,0 +1,144 @@
+* {
+  font-family: sans-serif;
+  box-sizing: border-box;
+  color: #505860;
+}
+
+body {
+  background-color: #d8e1f0;
+}
+main {
+  display: flex;
+  width: 95%;
+  margin: auto;
+}
+.sidebar-nav {
+  width: 20%;
+}
+
+.content-wrap {
+  width: 80%;
+  background-color: white;
+  min-height: 90vh;
+  border-radius: 6px;
+}
+
+#course_title {
+  width: 90%;
+  margin: auto;
+  margin-bottom: 5px;
+  display: block;
+  border-radius: 6px;
+  border: 1px solid #6d7884;
+  padding: 10px;
+}
+#course_description {
+  display: block;
+  margin: auto;
+  margin-bottom: 30px;
+  min-width: 90%;
+  max-width: 90%;
+  height: 100px;
+  padding-right: 0px;
+  border-radius: 6px;
+  border: 1px solid #6d7884;
+  padding: 10px;
+}
+
+#submit-button {
+  display: block;
+  margin: 10px 5% 10px auto;
+}
+
+/* module */
+.add-module {
+  display: block;
+  margin: 10px 5% 10px auto;
+}
+.module-header {
+  background-color: #8fa6cb;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.module-header div {
+  color: white;
+}
+.module-header div svg path {
+  color: white;
+}
+.module-content {
+  border: 1px solid #8fa6cb;
+  width: 90%;
+  margin: auto;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.module-main {
+  display: none;
+}
+
+.module-title {
+  width: 98%;
+  display: block;
+  margin: 30px auto;
+  border-radius: 6px;
+  border: 1px solid #6d7884;
+  padding: 10px;
+}
+/* table  */
+.table {
+  display: flex;
+  flex-direction: column;
+  width: 98%;
+  margin: auto;
+}
+.table-row {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+  height: fit-content;
+}
+.table-row:first-child {
+  border-bottom: none;
+}
+.table-row:first-child div {
+  padding: 5px;
+}
+.table-row div:not(:last-child) {
+  border-right: 1px solid black;
+}
+.table-row:not(:first-child) {
+  height: 200px;
+}
+.table-row textarea {
+  min-height: 90%;
+  max-height: 90%;
+  min-width: 90%;
+  max-width: 90%;
+}
+.col-title {
+  width: 20%;
+}
+.col-exerpt {
+  width: 30%;
+}
+.col-description {
+  width: 40%;
+}
+.col-image {
+  width: 10%;
+}
+#lesson_title {
+  width: 90%;
+}
+.add-lesson {
+  display: block;
+  margin: 10px 1% 30px auto;
+}
+
+.show-block {
+  display: block;
+}

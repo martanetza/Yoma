@@ -1,0 +1,61 @@
+<div class="module-content">
+  <div onclick="openModule()" class="module-header">
+    <div>
+      Module 1
+    </div>
+    <div>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </div>
+  <div class="module-main">
+    <input
+      class="module-title"
+      name="module_title[]"
+      type="text"
+      placeholder="Module title"
+      oninput="chanegTitle()"
+    />
+    <input
+      type="hidden"
+      class="number_of_items"
+      name="number_of_items[]"
+      value="1"
+    />
+    <div class="table">
+      <div class="table-row">
+        <div class="col-title">Title</div>
+        <div class="col-exerpt">Exerpt</div>
+        <div class="col-description">Text content</div>
+        <div class="col-image">Image url</div>
+      </div>
+      <div class="table-row">
+        <div class="col-title">
+          <input
+            class="lesson_title"
+            name="lesson_title[]"
+            type="text"
+            placeholder="Lesson title"
+          />
+        </div>
+        <div class="col-exerpt">
+          <textarea
+            placeholder="Lesson exerpt"
+            class="lesson_exerpt"
+            name="lesson_exerpt[]"
+          ></textarea>
+        </div>
+        <div class="col-description">
+          <textarea
+            placeholder="Lesson description"
+            class="lesson_description"
+            name="lesson_description[]"
+          ></textarea>
+        </div>
+        <div class="col-image">Image url</div>
+      </div>
+    </div>
+    <button onclick="addLesson()" id="add_lesson" class="add-lesson">
+      Add lesson
+    </button>
+  </div>
+</div>
