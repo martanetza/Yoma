@@ -50,3 +50,5 @@ try {
 } catch (PDOException $e) {
     echo $e;
 }
+
+header('Location: read.php?course_id=' . $last_id);
