@@ -32,16 +32,92 @@ $update = $_GET['update'];
         <?php
         try {
             if ($update === 'true') {
-                $name = $_POST['course_name_update'];
+                $course_name_update = $_POST['course_name_update'];
+                $course_description_update = $_POST['course_description_update'];
 
-                $q_course_update = $conn->prepare('UPDATE courses SET course_name = :course_name WHERE course_id = :id');
-                $q_course_update->bindValue(':course_name', $name);
+                $q_course_update = $conn->prepare('UPDATE courses SET course_name = :course_name, course_desc: :course_description_update WHERE course_id = :id');
+                $q_course_update->bindValue(':course_name', $course_name_update);
+                $q_course_update->bindValue(':course_description_update', $course_description_update);
                 $q_course_update->bindValue(':id', $course_id);
 
                 $q_course_update->execute();
 
-                echo 'Updated rows:' . $q_course_update->rowCount();
+                // echo 'Course updated rows:' . $q_course_update->rowCount();
+
+                //update module 
+                $aModule_id = $_POST['module_id'];
+                $aModule_title_update = $_POST['module_title_update'];
+                $aNumber_of_items_update = $_POST['number_of_items_update'];
+                $k = 0;
+                $q_module_update = $conn->prepare('UPDATE modules SET module_name = :module_title_update WHERE module_id = :module_id');
+                foreach ($aModule_id as $key => $module_id) {
+                    $q_module_update->bindValue(':module_id', $module_id);
+                    $q_module_update->bindValue(':module_title_update', $aModule_title_update[$key]);
+                    $q_module_update->execute();
+
+                    //add a new lesson to an existing module 
+
+                    for ($k; $k < $aNumber_of_items_update[$key]; $k++) {
+                        $aLesson_title = $_POST['lesson_title'];
+                        $aLesson_exerpt = $_POST['lesson_exerpt'];
+                        $aLesson_description = $_POST['lesson_description'];
+
+                        $query_lesson = $conn->prepare("INSERT INTO items VALUES(null, :lesson_title, :lesson_exerpt, :lesson_description,  $module_id)");
+                        $query_lesson->bindValue(':lesson_title', $aLesson_title[$k]);
+                        $query_lesson->bindValue(':lesson_exerpt', $aLesson_exerpt[$k]);
+                        $query_lesson->bindValue(':lesson_description', $aLesson_description[$k]);
+                        $query_lesson->execute();
+                    }
+                }
+                //update lesson
+                $aLesson_id = $_POST['lesson_id'];
+                $aLesson_title_update = $_POST['lesson_title_update'];
+                $aLesson_excerpt_update = $_POST['lesson_excerpt_update'];
+                $aLesson_description_update = $_POST['lesson_description_update'];
+
+                $q_item_update = $conn->prepare('UPDATE items SET item_title = :lesson_title_update, item_excerpt = :lesson_excerpt_update, item_content = :lesson_description_update WHERE item_id = :lesson_id');
+                foreach ($aLesson_id as $key => $lesson_id) {
+                    $q_item_update->bindValue(':lesson_id', $lesson_id);
+                    $q_item_update->bindValue(':lesson_title_update',  $aLesson_title_update[$key]);
+                    $q_item_update->bindValue(':lesson_excerpt_update',  $aLesson_excerpt_update[$key]);
+                    $q_item_update->bindValue(':lesson_description_update',  $aLesson_description_update[$key]);
+                    $q_item_update->execute();
+                }
+                //create module and lessons
+                if (isset($_POST['module_title'])) {
+                    $aModule_name = $_POST['module_title'];
+                    $aItems_number = $_POST['number_of_items'];
+                    $aLesson_title = $_POST['lesson_title'];
+                    $aLesson_exerpt = $_POST['lesson_exerpt'];
+                    $aLesson_description = $_POST['lesson_description'];
+
+
+                    // create modules
+                    $i = 0;
+                    $j = 0;
+                    $number_of_items_per_module = 0;
+                    for ($i; $i < count($aModule_name); $i++) {
+                        $number_of_items_per_module += $aItems_number[$i];
+                        print_r($number_of_items_per_module);
+                        $query_module = $conn->prepare("INSERT INTO modules VALUES(null, :module_name,  $course_id)");
+                        $query_module->bindValue(':module_name', $aModule_name[$i]);
+                        $query_module->execute();
+
+                        $last_module_id = $conn->lastInsertId();
+                        echo "New record created successfully. Last inserted ID is: " . $last_module_id;
+                        //create lessons 
+                        for ($j; $j < $number_of_items_per_module; $j++) {
+                            $query_lesson = $conn->prepare("INSERT INTO items VALUES(null, :lesson_title, :lesson_exerpt, :lesson_description,  $last_module_id)");
+                            $query_lesson->bindValue(':lesson_title', $aLesson_title[$j]);
+                            $query_lesson->bindValue(':lesson_exerpt', $aLesson_exerpt[$j]);
+                            $query_lesson->bindValue(':lesson_description', $aLesson_description[$j]);
+                            $query_lesson->execute();
+                        }
+                    }
+                }
             }
+
+            //read data
             $q = $conn->prepare('SELECT * FROM courses WHERE course_id=' . $course_id);
             $q->execute();
             $data = $q->fetchAll();
@@ -49,7 +125,6 @@ $update = $_GET['update'];
             $q_module = $conn->prepare('SELECT * FROM modules WHERE course_id=' . $course_id);
             $q_module->execute();
             $modules_rows = $q_module->fetchAll();
-
 
         ?>
             <div class="content-wrap">
@@ -75,8 +150,9 @@ $update = $_GET['update'];
                                 </div>
                             </div>
                             <div class="module-main">
-                                <input class="module-title" name="module_title_update" type="text" placeholder="Module title" value="<?= $row->module_name; ?>" oninput="chanegTitle()" />
-                                <input type="hidden" class="number_of_items" name="number_of_items_update" value="1">
+                                <input class="module-title" name="module_title_update[]" type="text" placeholder="Module title" value="<?= $row->module_name; ?>" oninput="chanegTitle()" />
+                                <input type="hidden" class="module_id" name="module_id[]" value="<?= $row->module_id; ?>">
+                                <input type="hidden" class="number_of_items" name="number_of_items_update[]" value="0">
                                 <div class="table">
                                     <div class="table-row">
                                         <div class="col-title">Title</div>
@@ -88,14 +164,15 @@ $update = $_GET['update'];
                                     foreach ($items_rows as $row) :
                                     ?>
                                         <div class="table-row">
+                                            <input type="hidden" class="lesson_id" name="lesson_id[]" value="<?= $row->item_id; ?>">
                                             <div class="col-title">
-                                                <input class="lesson_title" name="lesson_title_update" type="text" placeholder="Lesson title" value="<?= $row->item_title; ?>" />
+                                                <input class="lesson_title" name="lesson_title_update[]" type="text" placeholder="Lesson title" value="<?= $row->item_title; ?>" />
                                             </div>
                                             <div class="col-exerpt">
-                                                <textarea placeholder="Lesson exerpt" class="lesson_exerpt" name="lesson_exerpt_update"><?= $row->item_excerpt; ?></textarea>
+                                                <textarea placeholder="Lesson exerpt" class="lesson_excerpt" name="lesson_excerpt_update[]"><?= $row->item_excerpt; ?></textarea>
                                             </div>
                                             <div class="col-description">
-                                                <textarea placeholder="Lesson description" class="lesson_description" name="lesson_description_update"><?= $row->item_content; ?></textarea>
+                                                <textarea placeholder="Lesson description" class="lesson_description" name="lesson_description_update[]"><?= $row->item_content; ?></textarea>
                                             </div>
                                             <div class="col-image">Image url</div>
                                         </div>
@@ -145,7 +222,7 @@ $update = $_GET['update'];
         event.target.parentElement.querySelector(".module-main").classList.toggle("show-block");
     }
 
-    var number_of_module_lessons = 1
+    var number_of_module_lessons = 0
 
     function addLesson() {
         event.preventDefault();

@@ -25,6 +25,8 @@ try {
     $aLesson_description = $_POST['lesson_description'];
 
     // create modules
+
+
     $i = 0;
     $j = 0;
     $number_of_items_per_module = 0;
