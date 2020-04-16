@@ -30,7 +30,7 @@ try {
       <nav>
         <ul>
           <li>
-            <a href="">Courses</a>
+            <a href="index.html">Courses</a>
           </li>
           <li>
             <a href="">About</a>
@@ -51,15 +51,15 @@ try {
             $items_rows = $q_items->fetchAll();
             ?>
             <div class="module-list-element">
-              <div onclick="openContent()" class="module-list-element-header">
+              <div onclick="openContent(<?= $row->module_id; ?>)" class="module-list-element-header">
                 <div><?= $row->module_name; ?></div>
                 <i class="fas fa-angle-right fa-1x"></i>
               </div>
-              <div class="module-list-element-content">
+              <div id="content-module-<?= $row->module_id; ?>" class="module-list-element-content">
                 <?php
                 foreach ($items_rows as $row) :
                 ?>
-                  <div class="item-list-element">
+                  <div onclick="fetchSingleItemContent(<?= $row->item_id; ?>)" class="item-list-element">
                     <div><?= $row->item_title; ?></div>
                     <i class="fas fa-arrow-right"></i>
                   </div>
@@ -69,7 +69,20 @@ try {
           <?php endforeach; ?>
         </div>
       </div>
-      <div class="modal"></div>
+      <div class="modal">
+        <?php
+        $q_item = $conn->prepare('SELECT * FROM items WHERE module_id= :module_id LIMIT 1');
+        $q_item->bindValue(':module_id', $modules_rows[0]->module_id);
+        $q_item->execute();
+        $item = $q_item->fetchAll();
+        ?>
+        <h1>
+          <?= $item[0]->item_title ?>
+        </h1>
+        <p>
+          <?= $item[0]->item_content ?>
+        </p>
+      </div>
     </main>
   </body>
 
@@ -82,7 +95,23 @@ try {
 ?>
 
 <script>
-  function openContent() {
+  document.querySelector(".module-list-element-content").classList.add("show");
+
+  function openContent(moduleId) {
     console.log("test")
+    document.querySelector("#content-module-" + moduleId).classList.toggle("show");
+  }
+
+
+  function fetchSingleItemContent(itemId) {
+    async function fetchingData() {
+      var jResponse = await fetch(`get_single_item.php?item_id=${itemId}`);
+      var jData = await jResponse.json();
+      console.log(jData);
+      document.querySelector('.modal').innerHTML = `<h1>${jData[0].item_title}</h1><p>${jData[0].item_content}</p>`
+
+    }
+    fetchingData();
+
   }
 </script>

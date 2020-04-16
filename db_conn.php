@@ -12,7 +12,6 @@ try {
         // PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC //allows to use assoc array
     ];
     $conn = new PDO($connect, $username, $password, $options);
-    echo 'connected';
 } catch (PDOException $exeption) {
     echo $exeption;
 }
