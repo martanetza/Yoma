@@ -3,7 +3,9 @@
   box-sizing: border-box;
   color: #505860;
 }
-
+a {
+  text-decoration: none;
+}
 body {
   background-color: #d8e1f0;
 }
@@ -12,8 +14,32 @@ main {
   width: 95%;
   margin: auto;
 }
+
+#submit-button {
+  border: none;
+}
+
+#add-module {
+  background-color: white;
+  border: 1px solid #8fa6cb;
+  padding: 10px 20px;
+  border-radius: 33px;
+  color: #8fa6cb;
+  cursor: pointer;
+}
 .sidebar-nav {
   width: 20%;
+}
+
+.sidebar-nav .sidebar-nav-element {
+  background-color: white;
+  width: 90%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .content-wrap {
@@ -141,4 +167,47 @@ main {
 
 .show-block {
   display: block;
+}
+
+/* course list */
+.my-courses {
+  padding: 2%;
+}
+.course-list .table-row:first-child {
+  border: none;
+  border-bottom: 2px solid #8fa6cb;
+}
+.course-list .table-row {
+  border: none;
+}
+.course-list .table-row:not(:first-child) {
+  height: 40px;
+}
+
+.course-list .table-row div {
+  border: none;
+  padding: 5px;
+}
+
+.col-course-id {
+  width: 10%;
+}
+.col-course-name {
+  width: 30%;
+}
+.col-course-students {
+  width: 30%;
+}
+
+.btn {
+  background-color: #73ba9b;
+  padding: 10px 20px;
+  border-radius: 33px;
+  text-decoration: none;
+  color: white;
+  display: block;
+  width: fit-content;
+}
+.my-courses .btn {
+  margin-bottom: 50px;
 }

@@ -53,4 +53,4 @@ try {
     echo $e;
 }
 
-header('Location: read.php?course_id=' . $last_id);
+header('Location: edit.php?course_id=' . $last_id . '&update=false');

@@ -19,19 +19,29 @@ $sLessonTemplate = file_get_contents('lesson-template.html');
   <header>YOMA</header>
   <main class="main">
     <div class="sidebar-nav">
-      <div>
-        My profile
+      <div class="sidebar-nav-element">
+        <div>
+          My profile
+        </div>
+        <div>
+          <i class="fas fa-angle-right"></i>
+        </div>
       </div>
-      <div>
-        My courses
+      <div class="sidebar-nav-element">
+        <a href="my_courses.php">
+          My courses
+        </a>
+        <div>
+          <i class="fas fa-angle-right"></i>
+        </div>
       </div>
     </div>
     <div class="content-wrap">
       <form action="save_content.php" method="POST">
-        <input id="submit-button" type="submit" value="save" />
+        <input id="submit-button" class="btn" type="submit" value="save" />
         <input id="course_title" name="course_name" type="text" placeholder="Course name" />
         <textarea placeholder="Course description" id="course_description" name="course_description"></textarea>
-        <button onclick=" addModule()" class="add-module">add module</button>
+        <button onclick=" addModule()" id="add-module" class="add-module">add module</button>
         <div class="module-content">
           <div onclick="openModule()" class="module-header">
             <div>

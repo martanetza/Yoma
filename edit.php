@@ -22,11 +22,21 @@ $update = $_GET['update'];
     <header>YOMA</header>
     <main class="main">
         <div class="sidebar-nav">
-            <div>
-                My profile
+            <div class="sidebar-nav-element">
+                <div>
+                    My profile
+                </div>
+                <div>
+                    <i class="fas fa-angle-right"></i>
+                </div>
             </div>
-            <div>
-                My courses
+            <div class="sidebar-nav-element">
+                <a href="my_courses.php">
+                    My courses
+                </a>
+                <div>
+                    <i class="fas fa-angle-right"></i>
+                </div>
             </div>
         </div>
         <?php
@@ -35,7 +45,7 @@ $update = $_GET['update'];
                 $course_name_update = $_POST['course_name_update'];
                 $course_description_update = $_POST['course_description_update'];
 
-                $q_course_update = $conn->prepare('UPDATE courses SET course_name = :course_name, course_desc: :course_description_update WHERE course_id = :id');
+                $q_course_update = $conn->prepare('UPDATE courses SET course_name = :course_name, course_desc= :course_description_update WHERE course_id = :id');
                 $q_course_update->bindValue(':course_name', $course_name_update);
                 $q_course_update->bindValue(':course_description_update', $course_description_update);
                 $q_course_update->bindValue(':id', $course_id);
@@ -45,28 +55,30 @@ $update = $_GET['update'];
                 // echo 'Course updated rows:' . $q_course_update->rowCount();
 
                 //update module 
-                $aModule_id = $_POST['module_id'];
-                $aModule_title_update = $_POST['module_title_update'];
-                $aNumber_of_items_update = $_POST['number_of_items_update'];
-                $k = 0;
-                $q_module_update = $conn->prepare('UPDATE modules SET module_name = :module_title_update WHERE module_id = :module_id');
-                foreach ($aModule_id as $key => $module_id) {
-                    $q_module_update->bindValue(':module_id', $module_id);
-                    $q_module_update->bindValue(':module_title_update', $aModule_title_update[$key]);
-                    $q_module_update->execute();
+                if (isset($_POST['module_id'])) {
+                    $aModule_id = $_POST['module_id'];
+                    $aModule_title_update = $_POST['module_title_update'];
+                    $aNumber_of_items_update = $_POST['number_of_items_update'];
+                    $k = 0;
+                    $q_module_update = $conn->prepare('UPDATE modules SET module_name = :module_title_update WHERE module_id = :module_id');
+                    foreach ($aModule_id as $key => $module_id) {
+                        $q_module_update->bindValue(':module_id', $module_id);
+                        $q_module_update->bindValue(':module_title_update', $aModule_title_update[$key]);
+                        $q_module_update->execute();
 
-                    //add a new lesson to an existing module 
+                        //add a new lesson to an existing module 
 
-                    for ($k; $k < $aNumber_of_items_update[$key]; $k++) {
-                        $aLesson_title = $_POST['lesson_title'];
-                        $aLesson_exerpt = $_POST['lesson_exerpt'];
-                        $aLesson_description = $_POST['lesson_description'];
+                        for ($k; $k < $aNumber_of_items_update[$key]; $k++) {
+                            $aLesson_title = $_POST['lesson_title'];
+                            $aLesson_exerpt = $_POST['lesson_exerpt'];
+                            $aLesson_description = $_POST['lesson_description'];
 
-                        $query_lesson = $conn->prepare("INSERT INTO items VALUES(null, :lesson_title, :lesson_exerpt, :lesson_description,  $module_id)");
-                        $query_lesson->bindValue(':lesson_title', $aLesson_title[$k]);
-                        $query_lesson->bindValue(':lesson_exerpt', $aLesson_exerpt[$k]);
-                        $query_lesson->bindValue(':lesson_description', $aLesson_description[$k]);
-                        $query_lesson->execute();
+                            $query_lesson = $conn->prepare("INSERT INTO items VALUES(null, :lesson_title, :lesson_exerpt, :lesson_description,  $module_id)");
+                            $query_lesson->bindValue(':lesson_title', $aLesson_title[$k]);
+                            $query_lesson->bindValue(':lesson_exerpt', $aLesson_exerpt[$k]);
+                            $query_lesson->bindValue(':lesson_description', $aLesson_description[$k]);
+                            $query_lesson->execute();
+                        }
                     }
                 }
                 //update lesson
@@ -128,11 +140,11 @@ $update = $_GET['update'];
 
         ?>
             <div class="content-wrap">
-                <form action="read.php?course_id=<?= $course_id; ?>&update=true" method="POST">
-                    <input id="submit-button" type="submit" value="save" />
+                <form action="edit.php?course_id=<?= $course_id; ?>&update=true" method="POST">
+                    <input id="submit-button" class="btn" type="submit" value="update" />
                     <input id="course_title" name="course_name_update" type="text" placeholder="Course name" value="<?= $data[0]->course_name; ?>" />
                     <textarea placeholder="Course description" id="course_description" name="course_description_update"><?= $data[0]->course_desc; ?> </textarea>
-                    <button onclick=" addModule()" class="add-module">add module</button>
+                    <button onclick=" addModule()" id="add-module" class="add-module">add module</button>
                     <?php
                     foreach ($modules_rows as $row) :
                         $q_items = $conn->prepare('SELECT * FROM items WHERE module_id=' . $row->module_id);
