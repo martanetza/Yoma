@@ -147,3 +147,88 @@ nav ul a:hover {
   align-items: center;
   justify-content: flex-start;
 }
+
+.into-main form .btn {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* user profile */
+.main-profile {
+  padding: 100px 30px;
+}
+.user-profile-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-info {
+  width: 40%;
+  height: 100px;
+  background-color: white;
+  padding: 10px;
+}
+
+.user-course-list {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.user-course-list-item {
+  width: 50%;
+  padding: 0px 10px;
+  margin-bottom: 10px;
+}
+.user-course-list-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: white;
+  padding: 10px;
+  border-radius: 6px;
+}
+.course-name {
+  width: 50%;
+}
+.continue-btn {
+  width: 50%;
+}
+
+.continue-btn a {
+  margin: 0px 0px 0px auto;
+}
+.btn {
+  background-color: #8fa6cb;
+  padding: 5px 10px;
+  border-radius: 33px;
+  text-decoration: none;
+  color: white;
+  display: block;
+  width: fit-content;
+  box-shadow: none;
+  margin-right: 0;
+  margin-left: auto;
+  border-style: none;
+  cursor: pointer;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background-color: #ece8e8;
+  border-radius: 33px;
+}
+.progress {
+  width: 80%;
+  height: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(116, 188, 157, 1) 0%,
+    rgba(162, 225, 197, 1) 100%
+  );
+
+  border-radius: 33px;
+}

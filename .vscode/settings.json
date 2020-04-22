@@ -1,0 +1,13 @@
+{
+    "sqltools.connections": [
+        {
+            "askForPassword": false,
+            "database": "Yoma",
+            "dialect": "MySQL",
+            "name": "Yoma",
+            "port": 3306,
+            "server": "localhost",
+            "username": "root"
+        }
+    ]
+}

@@ -2,13 +2,24 @@
 require_once('db_conn.php');
 
 $course_id = $_GET['course_id'];
-$q_module = $conn->prepare('SELECT * FROM modules WHERE course_id=' . $course_id);
-$q_module->execute();
-$modules_rows = $q_module->fetchAll();
 ?>
 <?php
 
 try {
+
+  $q_module = $conn->prepare('SELECT * FROM modules WHERE course_id=' . $course_id);
+  $q_module->execute();
+  $modules_rows = $q_module->fetchAll();
+
+
+  $q_module_join = $conn->prepare('SELECT * FROM items LEFT JOIN modules ON items.module_id = modules.module_id WHERE course_id=' . $course_id);
+  $q_module_join->execute();
+  $modules_rows_join = $q_module_join->fetchAll();
+
+
+
+
+
 ?>
   <!DOCTYPE html>
   <html lang="en">
@@ -30,7 +41,7 @@ try {
       <nav>
         <ul>
           <li>
-            <a href="index.html">Courses</a>
+            <a href="index.php">Courses</a>
           </li>
           <li>
             <a href="">About</a>
