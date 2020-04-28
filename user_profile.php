@@ -2,13 +2,13 @@
 require_once('db_conn.php');
 
 // $course_id = $_GET['course_id'];
-$user_id = "b@b.com "
+$user_id = "f@f.com "
 ?>
 <?php
 
 try {
 
-  $q_chosen_course = $conn->prepare('SELECT * FROM chosen_courses INNER JOIN courses ON chosen_courses.course_id = courses.course_id INNER JOIN users ON chosen_courses.user_email = users.email  WHERE chosen_courses.user_email ="b@b.com"');
+  $q_chosen_course = $conn->prepare('SELECT * FROM chosen_course INNER JOIN courses ON chosen_course.course_id = courses.course_id INNER JOIN users ON chosen_course.user_email = users.email  WHERE chosen_course.user_email ="f@f.com"');
   $q_chosen_course->execute();
   $courses_rows = $q_chosen_course->fetchAll();
 

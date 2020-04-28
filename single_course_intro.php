@@ -8,7 +8,7 @@ $course_id = $_GET['course_id'];
 $user_id = 'f@f.com';
 try {
 
-  $query_chosen_course = $conn->prepare('SELECT * FROM chosen_courses WHERE course_id = :course_id AND user_email = :user_email');
+  $query_chosen_course = $conn->prepare('SELECT * FROM chosen_course WHERE course_id = :course_id AND user_email = :user_email');
   $query_chosen_course->bindValue(':course_id', $course_id);
   $query_chosen_course->bindValue(':user_email', $user_id);
 

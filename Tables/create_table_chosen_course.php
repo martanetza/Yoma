@@ -3,12 +3,13 @@ require_once('../db_conn.php');
 
 try {
 
-    $sql = "CREATE TABLE Chosen_courses (
+    $sql = "CREATE TABLE Chosen_course (
     course_id INT(6),
     user_email VARCHAR(50),
     start_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     progress INT(6),
-    PRIMARY KEY( course_id, user_email) 
+    PRIMARY KEY( course_id, user_email)
+    
     )";
 
     $conn->exec($sql);

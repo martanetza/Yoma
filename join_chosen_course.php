@@ -12,12 +12,15 @@ try {
 
 
         //if don't exist create a record 
-        $query_chosen_course = $conn->prepare('INSERT INTO chosen_courses VALUES(:course_id, :user_email, null, null)');
+        $query_chosen_course = $conn->prepare('INSERT INTO chosen_course VALUES(:course_id, :user_email, null, null)');
         $query_chosen_course->bindValue(':course_id', $course_id);
         $query_chosen_course->bindValue(':user_email', $user_id);
 
         $query_chosen_course->execute();
-        echo '123';
+
+        $query_update_course = $conn->prepare('CALL users_plus(:course_id) ');
+        $query_update_course->bindValue(':course_id', $course_id);
+        $query_update_course->execute();
     } else {
         echo ' row already exist';
     }

@@ -2,6 +2,7 @@
 require_once('db_conn.php');
 
 $course_id = $_GET['course_id'];
+$test_template = file_get_contents("test-template.html");
 ?>
 <?php
 
@@ -75,6 +76,13 @@ try {
                     <i class="fas fa-arrow-right"></i>
                   </div>
                 <?php endforeach; ?>
+                <div onclick="fetchTest(<?= $row->module_id; ?>)" class="item-list-element">
+                  <div>Test</div>
+                  <i class="fas fa-arrow-right"></i>
+                </div>
+              </div>
+              <div>
+
               </div>
             </div>
           <?php endforeach; ?>
@@ -93,6 +101,7 @@ try {
         <p>
           <?= $item[0]->item_content ?>
         </p>
+
       </div>
     </main>
   </body>
@@ -124,5 +133,39 @@ try {
     }
     fetchingData();
 
+  }
+
+
+  function fetchTest(module_id) {
+    var test_template = `<?= $test_template; ?>`
+    var test_template_copy = test_template;
+    console.log(module_id)
+    async function fetchingDataTest(module_id) {
+      var jResponse = await fetch(`get_single_test_item.php?module_id=${module_id}`);
+      var jData = await jResponse.json();
+      console.log(jData);
+      test_template_copy = test_template_copy.replace("::Question::", jData[0].question);
+      test_template_copy = test_template_copy.replace("::answer_A::", jData[0].option_a);
+      test_template_copy = test_template_copy.replace("::answer_B::", jData[0].option_b);
+      test_template_copy = test_template_copy.replace("::answer_C::", jData[0].option_c);
+      test_template_copy = test_template_copy.replace("::answer_D::", jData[0].option_d);
+
+      document.querySelector('.modal').innerHTML = test_template_copy;
+      controlCheckboxes()
+    }
+    fetchingDataTest(module_id)
+  }
+
+  function controlCheckboxes() {
+    document.querySelectorAll('#answer_A, #answer_B, #answer_C, #answer_D').forEach(e => {
+      console.log(e)
+      e.addEventListener('input', () => {
+        document.querySelectorAll('#answer_A, #answer_B, #answer_C, #answer_D').forEach(elm => {
+          if (e.id !== elm.id) {
+            elm.checked = false
+          }
+        })
+      })
+    })
   }
 </script>
