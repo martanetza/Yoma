@@ -76,7 +76,7 @@ try {
                     <i class="fas fa-arrow-right"></i>
                   </div>
                 <?php endforeach; ?>
-                <div onclick="fetchTest(<?= $row->module_id; ?>)" class="item-list-element">
+                <div onclick="fetchTest(<?= $row->module_id . ',' . $course_id ?>)" class="item-list-element">
                   <div>Test</div>
                   <i class="fas fa-arrow-right"></i>
                 </div>
@@ -136,7 +136,7 @@ try {
   }
 
 
-  function fetchTest(module_id) {
+  function fetchTest(module_id, test_id) {
     var test_template = `<?= $test_template; ?>`
     var test_template_copy = test_template;
     console.log(module_id)
@@ -152,20 +152,37 @@ try {
 
       document.querySelector('.modal').innerHTML = test_template_copy;
       controlCheckboxes()
+      document.querySelector('.submit-btn').addEventListener('click', () => {
+        validateTheAnswer(jData, test_id)
+      })
     }
     fetchingDataTest(module_id)
   }
 
+
   function controlCheckboxes() {
-    document.querySelectorAll('#answer_A, #answer_B, #answer_C, #answer_D').forEach(e => {
+    var allOptions = document.querySelectorAll('#answer_A, #answer_B, #answer_C, #answer_D')
+    allOptions.forEach(e => {
       console.log(e)
       e.addEventListener('input', () => {
-        document.querySelectorAll('#answer_A, #answer_B, #answer_C, #answer_D').forEach(elm => {
+        allOptions.forEach(elm => {
           if (e.id !== elm.id) {
             elm.checked = false
           }
         })
       })
+    })
+  }
+
+  function validateTheAnswer(data, testID) {
+    var allOptions = document.querySelectorAll('#answer_A, #answer_B, #answer_C, #answer_D')
+    allOptions.forEach(elm => {
+
+      if (elm.value == data[0].answer && elm.checked) {
+        document.querySelector('.modal .test-container').innerHTML = '<div class="message"> <p>Congratualtions your answer was correct you can move now to the next module <p> </div>';
+        console.log(testID)
+      }
+
     })
   }
 </script>
