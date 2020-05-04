@@ -234,7 +234,6 @@ nav ul a:hover {
   border-radius: 33px;
 }
 .progress {
-  width: 80%;
   height: inherit;
   background: linear-gradient(
     180deg,

@@ -66,7 +66,7 @@ try {
                   </form>
                 </div>
                 <div class="progress-bar">
-                  <div class="progress"></div>
+                  <div class="progress" style="width: <?= $row->progress . '%'; ?>"></div>
                 </div>
               </div>
             </div>

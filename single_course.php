@@ -209,11 +209,19 @@ try {
         document.querySelector('#header-module-' + next_module_id).setAttribute('onclick', `openContent(${next_module_id},0)`);
         document.querySelector('#header-module-' + next_module_id + ' .lock').innerHTML = '<i class="fas fa-lock-open"></i>'
         console.log(document.querySelector('#header-module-' + next_module_id))
+        save_progress(courseID);
       } else if (elm.value !== data[0].answer && elm.checked) {
         document.querySelector('.modal .test-container').innerHTML = '<div class="message"> <p>Wrong<p> </div>';
 
       }
 
     })
+  }
+
+  function save_progress(courseID) {
+    (async function() {
+      var jResponse = await fetch(`save_progress.php?course_id=${courseID}`);
+
+    })();
   }
 </script>
