@@ -113,6 +113,13 @@ nav ul a:hover {
   margin-bottom: 30px;
   cursor: pointer;
 }
+.name-container {
+  display: flex;
+  flex-direction: row;
+}
+.name-container svg {
+  margin-right: 10px;
+}
 .item-list-element {
   display: flex;
   flex-direction: row;
