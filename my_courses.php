@@ -55,6 +55,10 @@ $author_email = "a@a.com";
                         <div class="col-course-name">Course name</div>
                         <div class="col-course-students">Number of students</div>
                         <div class="col-course-date">Publishe date</div>
+                        <div class="edit-btn">
+                        </div>
+                        <div class="delete-btn">
+                        </div>
                     </div>
                     <?php
                     foreach ($data as $course_row) :
@@ -64,10 +68,10 @@ $author_email = "a@a.com";
                             <div class="col-course-name"><?= $course_row->course_name ?></div>
                             <div class="col-course-students"><?= $course_row->no_of_paparticipants; ?></div>
                             <div class="col-course-date"><?= $course_row->published_date; ?></div>
-                            <div>
+                            <div class="edit-btn">
                                 <a href="edit.php?course_id=<?= $course_row->course_id ?>&update=false"> Edit</a>
                             </div>
-                            <div>
+                            <div class="delete-btn">
                                 <a href="delete.php?course_id=<?= $course_row->course_id ?>"> Delete</a>
                             </div>
                         </div>

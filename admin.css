@@ -120,6 +120,7 @@ main {
   flex-direction: column;
   width: 98%;
   margin: auto;
+  margin-bottom: 50px;
 }
 .table-row {
   display: flex;
@@ -157,6 +158,24 @@ main {
 .col-image {
   width: 10%;
 }
+
+.col-question {
+  width: 30%;
+}
+.col-option {
+  width: 15%;
+}
+.col-answer {
+  width: 10%;
+}
+
+.table-test .table-row:not(:first-child) {
+  height: 100px;
+}
+.table-test .table-row input,
+.table-test .table-row select {
+  width: 90%;
+}
 #lesson_title {
   width: 90%;
 }
@@ -173,6 +192,7 @@ main {
 .my-courses {
   padding: 2%;
 }
+
 .course-list .table-row:first-child {
   border: none;
   border-bottom: 2px solid #8fa6cb;
@@ -181,7 +201,9 @@ main {
   border: none;
 }
 .course-list .table-row:not(:first-child) {
-  height: 40px;
+  height: 60px;
+  display: flex;
+  align-items: center;
 }
 
 .course-list .table-row div {
@@ -190,15 +212,57 @@ main {
 }
 
 .col-course-id {
-  width: 10%;
+  width: 5%;
+  display: flex;
+  justify-content: center;
 }
 .col-course-name {
-  width: 30%;
+  width: 35%;
+  display: flex;
+  justify-content: center;
 }
 .col-course-students {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+}
+.col-course-date {
   width: 30%;
+  display: flex;
+  justify-content: center;
+}
+.edit-btn {
+  width: 10%;
+  display: flex;
+  justify-content: center;
 }
 
+.edit-btn a {
+  color: white;
+  background-color: #73ba9b;
+  padding: 6px 20px !important;
+  border-radius: 33px;
+  color: white !important;
+  opacity: 0.6;
+}
+.edit-btn a:hover {
+  opacity: 1;
+}
+.delete-btn {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+}
+.delete-btn a {
+  color: white;
+  background-color: #e63946;
+  padding: 6px 20px !important;
+  border-radius: 33px;
+  opacity: 0.6;
+}
+.delete-btn a:hover {
+  opacity: 1;
+}
 .btn {
   background-color: #73ba9b;
   padding: 10px 20px;

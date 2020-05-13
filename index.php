@@ -30,7 +30,7 @@ try {
       <nav>
         <ul>
           <li>
-            <a href="index.html">Courses</a>
+            <a href="index.php">Courses</a>
           </li>
           <li>
             <a href="">About</a>

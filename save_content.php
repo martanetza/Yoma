@@ -48,9 +48,25 @@ try {
             $query_lesson->bindValue(':lesson_description', $aLesson_description[$j]);
             $query_lesson->execute();
         }
+        //create test
+        $aQestion = $_POST['question'];
+        $aOption_a = $_POST['option_a'];
+        $aOption_b = $_POST['option_b'];
+        $aOption_c = $_POST['option_c'];
+        $aOption_d = $_POST['option_d'];
+        $aAnswer = $_POST['answer'];
+
+        $query_test = $conn->prepare("INSERT INTO test VALUES(null, :qestion, :option_a, :option_b, :option_c, :option_d, :answer,  $last_module_id)");
+        $query_test->bindValue(':qestion', $aQestion[$i]);
+        $query_test->bindValue(':option_a', $aOption_a[$i]);
+        $query_test->bindValue(':option_b', $aOption_b[$i]);
+        $query_test->bindValue(':option_c', $aOption_c[$i]);
+        $query_test->bindValue(':option_d', $aOption_d[$i]);
+        $query_test->bindValue(':answer', $aAnswer[$i]);
+        $query_test->execute();
     }
 } catch (PDOException $e) {
     echo $e;
 }
 
-header('Location: edit.php?course_id=' . $last_id . '&update=false');
+// header('Location: edit.php?course_id=' . $last_id . '&update=false');

@@ -68,14 +68,14 @@ try {
         <div class="single-course-list-wrap">
           <?php foreach ($modules_rows as $key => $row) : ?>
             <?php
-            $q_items = $conn->prepare('SELECT * FROM items WHERE module_id=' . $row->module_id);
+            $q_items = $conn->prepare('SELECT * FROM items WHERE module_id=' . $row->module_id . ' ORDER BY item_id ASC');
             $q_items->execute();
             $items_rows = $q_items->fetchAll();
 
             ?>
             <div class="module-list-element">
               <?php
-              if ($key <= $open_lock_number - 1) {
+              if ($key == 0 || $key <= $open_lock_number - 1) {
                 $locked = 0;
                 $lock = '<i class="fas fa-lock-open"></i>';
               } else {

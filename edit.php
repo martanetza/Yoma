@@ -81,6 +81,27 @@ $update = $_GET['update'];
                         }
                     }
                 }
+                //update test
+                $aTest_item_id = $_POST['test_item_id'];
+                $question = $_POST['question_update'];
+                $option_a = $_POST['option_a_update'];
+                $option_b = $_POST['option_b_update'];
+                $option_c = $_POST['option_c_update'];
+                $option_d = $_POST['option_d_update'];
+                $answer = $_POST['answer_update'];
+
+                $query_test = $conn->prepare("UPDATE test SET question = :question, option_a = :option_a, option_b = :option_b, option_c = :option_c, option_d = :option_d, answer = :answer  WHERE test_item_id =  :test_item_id");
+                foreach ($aTest_item_id as $key => $test_item_id) {
+                    $query_test->bindValue(':test_item_id', $test_item_id);
+                    $query_test->bindValue(':question', $question[$key]);
+                    $query_test->bindValue(':option_a', $option_a[$key]);
+                    $query_test->bindValue(':option_b', $option_b[$key]);
+                    $query_test->bindValue(':option_c', $option_c[$key]);
+                    $query_test->bindValue(':option_d', $option_d[$key]);
+                    $query_test->bindValue(':answer', $answer[$key]);
+                    $query_test->execute();
+                }
+
                 //update lesson
                 $aLesson_id = $_POST['lesson_id'];
                 $aLesson_title_update = $_POST['lesson_title_update'];
@@ -125,6 +146,22 @@ $update = $_GET['update'];
                             $query_lesson->bindValue(':lesson_description', $aLesson_description[$j]);
                             $query_lesson->execute();
                         }
+                        //create test
+                        //create test
+                        $aQestion = $_POST['question'];
+                        $aOption_a = $_POST['option_a'];
+                        $aOption_b = $_POST['option_b'];
+                        $aOption_c = $_POST['option_c'];
+                        $aOption_d = $_POST['option_d'];
+                        $aAnswer = $_POST['answer'];
+
+                        $query_test = $conn->prepare("INSERT INTO test VALUES(null, :qestion, :option_a, :option_b, :option_c, :option_d, :answer,  $last_module_id)");
+                        $query_test->bindValue(':qestion', $aQestion[$i]);
+                        $query_test->bindValue(':option_a', $aOption_a[$i]);
+                        $query_test->bindValue(':option_b', $aOption_b[$i]);
+                        $query_test->bindValue(':option_c', $aOption_c[$i]);
+                        $query_test->bindValue(':option_d', $aOption_d[$i]);
+                        $query_test->bindValue(':answer', $aAnswer[$i]);
                     }
                 }
             }
@@ -147,9 +184,13 @@ $update = $_GET['update'];
                     <button onclick=" addModule()" id="add-module" class="add-module">add module</button>
                     <?php
                     foreach ($modules_rows as $row) :
-                        $q_items = $conn->prepare('SELECT * FROM items WHERE module_id=' . $row->module_id);
+                        $q_items = $conn->prepare('SELECT * FROM items  WHERE module_id=' . $row->module_id . ' ORDER BY item_id ASC');
                         $q_items->execute();
                         $items_rows = $q_items->fetchAll();
+
+                        $q_test = $conn->prepare('SELECT * FROM test WHERE module_id=' . $row->module_id);
+                        $q_test->execute();
+                        $test_rows = $q_test->fetchAll();
 
                     ?>
                         <div class="module-content">
@@ -165,7 +206,45 @@ $update = $_GET['update'];
                                 <input class="module-title" name="module_title_update[]" type="text" placeholder="Module title" value="<?= $row->module_name; ?>" oninput="chanegTitle()" />
                                 <input type="hidden" class="module_id" name="module_id[]" value="<?= $row->module_id; ?>">
                                 <input type="hidden" class="number_of_items" name="number_of_items_update[]" value="0">
-                                <div class="table">
+                                <div class="table table-test">
+                                    <div class="table-row">
+                                        <div class="col-question">Question</div>
+                                        <div class="col-option">Option A</div>
+                                        <div class="col-option">Option B</div>
+                                        <div class="col-option">Option C</div>
+                                        <div class="col-option">Option D</div>
+                                        <div class="col-answer">Answer</div>
+                                    </div>
+                                    <div class="table-row">
+                                        <input type="hidden" class="test_item_id" name="test_item_id[]" value="<?= $test_rows[0]->test_item_id ?>">
+
+                                        <div class="col-question">
+                                            <input class="question" name="question_update[]" type="text" placeholder="Question" value="<?= $test_rows[0]->question ?>" />
+                                        </div>
+                                        <div class="col-option">
+                                            <input class="option_a" name="option_a_update[]" type="text" placeholder="Option A" value="<?= $test_rows[0]->option_a ?>" />
+                                        </div>
+                                        <div class="col-option">
+                                            <input class="option_b" name="option_b_update[]" type="text" placeholder="Option B" value="<?= $test_rows[0]->option_b ?>" />
+                                        </div>
+                                        <div class="col-option">
+                                            <input class="option_c" name="option_c_update[]" type="text" placeholder="Option C" value="<?= $test_rows[0]->option_c ?>" />
+                                        </div>
+                                        <div class="col-option">
+                                            <input class="option_d" name="option_d_update[]" type="text" placeholder="Option D" value="<?= $test_rows[0]->option_d ?>" />
+                                        </div>
+                                        <div class="col-answer">
+                                            <select name="answer_update[]" class="answer-select">
+                                                <option value=""><?= $test_rows[0]->answer ?></option>
+                                                <option value="a">a</option>
+                                                <option value="b">b</option>
+                                                <option value="c">c</option>
+                                                <option value="d">d</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table module-items-template">
                                     <div class="table-row">
                                         <div class="col-title">Title</div>
                                         <div class="col-exerpt">Exerpt</div>
@@ -241,6 +320,6 @@ $update = $_GET['update'];
         number_of_module_lessons++
         var lessonTemplate = `<?php echo $sLessonTemplate; ?>`
         event.target.parentElement.querySelector(".number_of_items").value = number_of_module_lessons
-        event.target.parentElement.querySelector(".table").insertAdjacentHTML("beforeend", lessonTemplate);
+        event.target.parentElement.querySelector(".module-items-template").insertAdjacentHTML("beforeend", lessonTemplate);
     }
 </script>

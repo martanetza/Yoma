@@ -54,7 +54,43 @@ $sLessonTemplate = file_get_contents('lesson-template.html');
           <div class="module-main">
             <input class="module-title" name="module_title[]" type="text" placeholder="Module title" oninput="chanegTitle()" />
             <input type="hidden" class="number_of_items" name="number_of_items[]" value="1">
-            <div class="table">
+            <div class="table table-test">
+              <div class="table-row">
+                <div class="col-question">Question</div>
+                <div class="col-option">Option A</div>
+                <div class="col-option">Option B</div>
+                <div class="col-option">Option C</div>
+                <div class="col-option">Option D</div>
+                <div class="col-answer">Answer</div>
+              </div>
+              <div class="table-row">
+                <div class="col-question">
+                  <input class="question" name="question[]" type="text" placeholder="Question" />
+                </div>
+                <div class="col-option">
+                  <input class="option_a" name="option_a[]" type="text" placeholder="Option A" />
+                </div>
+                <div class="col-option">
+                  <input class="option_b" name="option_b[]" type="text" placeholder="Option B" />
+                </div>
+                <div class="col-option">
+                  <input class="option_c" name="option_c[]" type="text" placeholder="Option C" />
+                </div>
+                <div class="col-option">
+                  <input class="option_d" name="option_d[]" type="text" placeholder="Option D" />
+                </div>
+                <div class="col-answer">
+                  <select name="answer[]" class="answer-select">
+                    <option value="">choose</option>
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="table module-items-template">
               <div class="table-row">
                 <div class="col-title">Title</div>
                 <div class="col-exerpt">Exerpt</div>
@@ -114,6 +150,6 @@ $sLessonTemplate = file_get_contents('lesson-template.html');
     number_of_module_lessons++
     var lessonTemplate = `<?php echo $sLessonTemplate; ?>`
     event.target.parentElement.querySelector(".number_of_items").value = number_of_module_lessons
-    event.target.parentElement.querySelector(".table").insertAdjacentHTML("beforeend", lessonTemplate);
+    event.target.parentElement.querySelector(".module-items-template").insertAdjacentHTML("beforeend", lessonTemplate);
   }
 </script>
