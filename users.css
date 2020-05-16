@@ -1,0 +1,219 @@
+* {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+}
+
+@font-face {
+  font-family: "Avenir";
+  src: url("../fonts/Avenir.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/Avenir.woff") format("woff"),
+    url("../fonts/Avenir.ttf") format("truetype"),
+    url("../fonts/Avenir.svg#Avenir") format("svg");
+}
+
+body {
+  font-family: "Avenir", sans-serif;
+  color: #505860;
+}
+
+/* ##########################HEADER########################## */
+
+header {
+  background-color: white;
+  height: 65px;
+  box-shadow: 2px 2px 22px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+header * {
+  display: inline;
+}
+
+header li {
+  margin: 18px;
+}
+
+header li a {
+  color: #505860;
+  text-decoration: none;
+}
+
+header img {
+  height: 35px;
+  width: 94px;
+  padding-left: 10px;
+  z-index: 100;
+}
+
+ul {
+  display: inline-block;
+  text-align: end;
+  padding-right: 28px;
+}
+
+a:hover,
+a:active {
+  color: #8fa6cb;
+}
+
+/* ############################CREATE ACCOUNT#########################*/
+
+main {
+  display: grid;
+  justify-content: center;
+  grid-row-gap: 30px;
+  padding-top: 5%;
+}
+
+.container {
+  grid-row: 1/2;
+  box-shadow: 2px 2px 22px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: white;
+  height: 479px;
+  width: 565px;
+  display: grid;
+  text-align: center;
+}
+
+h1 {
+  padding-top: 30px;
+  font-size: 22px;
+  align-self: center;
+}
+
+form {
+  align-self: center;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 517px;
+  height: 41px;
+  font-size: 14px;
+  padding: 15px;
+  display: inline-block;
+  border: none;
+  border-radius: 6px;
+  background: #e6effe;
+}
+.input-container {
+  margin: 5px auto 22px auto;
+}
+#email-validation-messsage,
+#confirm-password-validation-messsage {
+  text-align: left;
+  width: 517px;
+  margin: 5px auto 22px auto;
+  color: red;
+}
+input[type="text"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  /*  background-color: #8fa6cb;
+  color: white; */
+}
+
+p {
+  font-size: 14px;
+}
+.signup-success-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.success-icon {
+  width: 30%;
+  height: auto;
+  margin-bottom: 50px;
+}
+
+.signup-success-text {
+  padding: 0 20%;
+  line-height: 2em;
+}
+
+.btn-signup {
+  width: 90%;
+  height: 51px;
+  margin: auto;
+  border-radius: 33px;
+  border: none;
+  font-size: 16px;
+  background-color: #8fa6cb;
+  color: white;
+  outline: none;
+  cursor: pointer;
+  grid-row: 2/3;
+}
+
+/*##########################LOGIN#############################*/
+.container-log-in {
+  box-shadow: 2px 2px 22px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: white;
+  height: 479px;
+  width: 565px;
+  display: grid;
+  text-align: center;
+}
+
+.form-log-in {
+  padding-bottom: 1%;
+}
+
+.btn-log-in {
+  justify-self: center;
+  width: 517px;
+  height: 51px;
+  border-radius: 33px;
+  border: none;
+  font-size: 16px;
+  background-color: #8fa6cb;
+  color: white;
+  outline: none;
+  cursor: pointer;
+  grid-row: 3/4;
+}
+
+.paragraph {
+  font-size: 14px;
+}
+
+/*##########################LOGOUT#############################*/
+
+.container-logout {
+  box-shadow: 2px 2px 22px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: #8fa6cb;
+  height: 350px;
+  width: 565px;
+  display: grid;
+  text-align: center;
+}
+
+.first {
+  color: white;
+  font-size: 130%;
+  font-weight: 300;
+}
+
+.second {
+  color: white;
+  font-size: 120%;
+  font-weight: 300;
+}
+
+.link:hover {
+  color: pink;
+}
+
+.link {
+  color: red;
+  text-decoration: none;
+}

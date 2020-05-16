@@ -1,14 +1,16 @@
 <?php
 require_once('db_conn.php');
+require_once('has_access.php');
 
 // $course_id = $_GET['course_id'];
-$user_id = "f@f.com "
+$user_id = $_SESSION['email'];
 ?>
 <?php
 
 try {
 
-  $q_chosen_course = $conn->prepare('SELECT * FROM chosen_course INNER JOIN courses ON chosen_course.course_id = courses.course_id INNER JOIN users ON chosen_course.user_email = users.email  WHERE chosen_course.user_email ="f@f.com"');
+  $q_chosen_course = $conn->prepare('SELECT * FROM chosen_course INNER JOIN courses ON chosen_course.course_id = courses.course_id INNER JOIN users ON chosen_course.user_email = users.email  WHERE chosen_course.user_email = :email');
+  $q_chosen_course->bindValue(':email', $user_id);
   $q_chosen_course->execute();
   $courses_rows = $q_chosen_course->fetchAll();
 

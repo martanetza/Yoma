@@ -1,11 +1,11 @@
 <?php
 require_once('db_conn.php');
-
+require_once('has_access.php');
 ?>
 
 <?php
 $course_id = $_GET['course_id'];
-$user_id = 'f@f.com';
+$user_id = $_SESSION['email'];
 try {
 
   $query_chosen_course = $conn->prepare('SELECT * FROM chosen_course WHERE course_id = :course_id AND user_email = :user_email');
