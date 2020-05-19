@@ -1,7 +1,8 @@
 <?php
 require_once('db_conn.php');
+require_once('has_access.php');
 
-$user_id = 'f@f.com';
+$user_id = $_SESSION['email'];
 $course_id = $_GET['course_id'];
 $test_template = file_get_contents("test-template.html");
 ?>

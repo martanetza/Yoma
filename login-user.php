@@ -16,6 +16,9 @@ try {
         print_r($result);
         session_start();
         $_SESSION['email'] = $email;
+        $q_log = $conn->prepare('INSERT INTO login_history VALUES(null, :email, null)');
+        $q_log->bindValue(':email', $email);
+        $q_log->execute();
         header('Location: index.php');
         exit();
     } else {

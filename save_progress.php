@@ -1,6 +1,6 @@
 <?php
-
 require_once('db_conn.php');
+require_once('has_access.php');
 
 // calculate the progress
 
@@ -8,7 +8,7 @@ try {
     //check what course the module belonges to and how many modules is in the course
 
     $course_id = $_GET['course_id'];
-    $user_email = 'f@f.com';
+    $user_email =  $_SESSION['email'];
     $q_test_modules = $conn->prepare('SELECT * FROM modules WHERE course_id = :course_id');
     $q_test_modules->bindValue(':course_id', $course_id);
     $q_test_modules->execute();
