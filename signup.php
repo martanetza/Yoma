@@ -11,13 +11,9 @@
  <body>
    <header>
      <img src="./img/logo.png" alt="logo" />
-     <nav>
-       <ul>
-         <li><a href="#">About</a></li>
-         <li><a href="#">Courses</a></li>
-         <li><a href="login.php">Login</a></li>
-       </ul>
-     </nav>
+     <?php
+      require_once('nav.php');
+      ?>
    </header>
    <main>
      <div class="container">
@@ -50,12 +46,19 @@
  <script>
    function validate_user() {
      var email = event.target.value;
+     var text
      console.log(email);
-     (async function() {
-       var jResponse = await fetch(`validate_user.php?email=${email}`);
+     var regEmail = /^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
 
-       var text = await jResponse.text();
-       console.log(text)
+
+     (async function() {
+       if (regEmail.test(email) === false) {
+         text = "The email is not correct"
+
+       } else {
+         var jResponse = await fetch(`validate_user.php?email=${email}`);
+         text = await jResponse.text();
+       }
        if (text) {
          document.querySelector('#email-validation-messsage').textContent = text
          return false
@@ -64,6 +67,8 @@
          return true
        }
      })();
+     console.log(text)
+
    }
 
    function post_user() {
@@ -74,6 +79,7 @@
        console.log("you can't do it")
      } else if (password !== confirm_password) {
        console.log("The password didn't match. Try again")
+       document.querySelector('#email-validation-messsage').textContent = ''
        document.querySelector('#confirm-password-validation-messsage').textContent = "The password didn't match. Try again"
      } else {
        (async function() {

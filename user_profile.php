@@ -37,19 +37,9 @@ try {
       <div class="logo-container">
         <img src="img/yoma_logo.png" alt="" />
       </div>
-      <nav>
-        <ul>
-          <li>
-            <a href="index.php">Courses</a>
-          </li>
-          <li>
-            <a href="">About</a>
-          </li>
-          <li>
-            <a href="">Login</a>
-          </li>
-        </ul>
-      </nav>
+      <?php
+      require_once('nav.php');
+      ?>
     </header>
     <main class="main-profile">
       <div class="user-profile-content">
@@ -125,7 +115,7 @@ try {
             <p>The feed:</p>
             <div class="feed-content">
               <?php
-              $q_messages = $conn->prepare('SELECT * FROM messages WHERE user_email = :email ORDER BY message_date DESC');
+              $q_messages = $conn->prepare('SELECT * FROM messages WHERE user_email = :email ORDER BY message_date DESC LIMIT 10');
               $q_messages->bindValue(':email', $user_id);
               $q_messages->execute();
               $q_messages_response = $q_messages->fetchAll();
@@ -145,7 +135,10 @@ try {
     </main>
     <div class="modal-user-profile">
       <div class="modal-content">
-        <form id="user-info-edit-form" action="edit_user_profile.php" method="POST">
+        <form id="user-info-edit-form" method="POST" onsubmit="return false">
+          <div class="input-container">
+            <input type="hidden" name="user_email" id="user_email" value="<?= (!empty($q_user_data->email)) ? $q_user_data->email  : ''; ?>">
+          </div>
           <div class="input-container">
             <label for="first_name">First name</label>
             <input type="text" name="first_name" id="first_name" placeholder="First name" value="<?= (!empty($q_user_data->first_name)) ? $q_user_data->first_name : ''; ?>">
@@ -159,19 +152,16 @@ try {
             <input type="text" name="school" id="school" placeholder="School" value="<?= (!empty($q_user_data->school)) ? $q_user_data->school : ''; ?>">
           </div>
           <div class="input-container">
-            <label for="user_email">User email</label>
-            <input type="text" name="user_email" id="user_email" placeholder="Email" value="<?= (!empty($q_user_data->email)) ? $q_user_data->email : ''; ?>">
-          </div>
-          <div class="input-container">
             <label for="password">Password</label>
             <input type="password" name="password" id="password" placeholder="Password" value="<?= (!empty($q_user_data->password)) ? $q_user_data->password : ''; ?>">
           </div>
           <div class="input-container">
             <label for="confirm_password">Confirm password</label>
             <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password" value="<?= (!empty($q_user_data->password)) ? $q_user_data->password : ''; ?>">
+            <p class="user-password-validation-message"></p>
           </div>
           <div class="input-container">
-            <input class="btn-save" type="submit" value="save">
+            <input onclick="save_changes()" class="btn-save" type="submit" value="save">
           </div>
         </form>
       </div>
@@ -189,5 +179,23 @@ try {
 <script>
   function openModal() {
     document.querySelector(".modal-user-profile").style.display = "block"
+  }
+
+  function save_changes() {
+    var password = document.querySelector("#password").value
+    var confirm_password = document.querySelector("#confirm_password").value
+    if (password != confirm_password) {
+      document.querySelector(".user-password-validation-message").textContent = "The password didn't match. Try again"
+    } else {
+      (async function() {
+        var oForm = document.querySelector("#user-info-edit-form");
+        var jConnection = await fetch("edit_user_profile.php", {
+          method: "POST",
+          body: new FormData(oForm)
+        });
+        document.querySelector(".modal-user-profile").style.display = "none"
+        window.location.href = "http://localhost/YOMA/user_profile.php";
+      })();
+    }
   }
 </script>

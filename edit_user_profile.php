@@ -16,7 +16,6 @@ try {
     $q_user->bindValue(':school', $school);
     $q_user->bindValue(':user_email', $user_email);
     $q_user->execute();
-    header('Location: user_profile.php');
 } catch (PDOException $e) {
     echo $e;
 }

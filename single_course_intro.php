@@ -38,19 +38,9 @@ try {
       <div class="logo-container">
         <img src="img/yoma_logo.png" alt="" />
       </div>
-      <nav>
-        <ul>
-          <li>
-            <a href="index.php">Courses</a>
-          </li>
-          <li>
-            <a href="">About</a>
-          </li>
-          <li>
-            <a href="">Login</a>
-          </li>
-        </ul>
-      </nav>
+      <?php
+      require_once('nav.php');
+      ?>
     </header>
     <main class="into-main">
       <form action="join_chosen_course.php" method="POST">

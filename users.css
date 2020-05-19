@@ -103,7 +103,8 @@ input[type="password"] {
   margin: 5px auto 22px auto;
 }
 #email-validation-messsage,
-#confirm-password-validation-messsage {
+#confirm-password-validation-messsage,
+.login-validation-message {
   text-align: left;
   width: 517px;
   margin: 5px auto 22px auto;

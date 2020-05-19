@@ -1,10 +1,3 @@
-<?php
-$page_title = "Momonod admin-logout";
-
-
-session_start();
-session_destroy();
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,13 +11,13 @@ session_destroy();
 <body>
     <header>
         <img src="img/logo.png" alt="logo" />
-        <nav>
-            <ul>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Courses</a></li>
-                <li><a href="signup.php">Create account</a></li>
-            </ul>
-        </nav>
+        <?php
+        require_once('nav.php');
+        ?>
+        <?php
+        session_start();
+        session_destroy();
+        ?>
     </header>
     <main>
         <main>

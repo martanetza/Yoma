@@ -50,19 +50,9 @@ try {
       <div class="logo-container">
         <img src="img/yoma_logo.png" alt="" />
       </div>
-      <nav>
-        <ul>
-          <li>
-            <a href="index.php">Courses</a>
-          </li>
-          <li>
-            <a href="">About</a>
-          </li>
-          <li>
-            <a href="">Login</a>
-          </li>
-        </ul>
-      </nav>
+      <?php
+      require_once('nav.php');
+      ?>
     </header>
     <main class="single-course-main">
       <div class="single-course-list">

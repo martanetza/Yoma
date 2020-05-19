@@ -353,7 +353,7 @@ nav ul a:hover {
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   display: none;
 }
 .modal-content {
@@ -393,4 +393,9 @@ nav ul a:hover {
   outline: none;
   cursor: pointer;
   grid-row: 3/4;
+}
+
+.user-password-validation-message {
+  color: red;
+  margin: 0px;
 }
