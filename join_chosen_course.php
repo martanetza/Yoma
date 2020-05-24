@@ -12,9 +12,9 @@ try {
 
 
         //if don't exist create a record 
-        $query_chosen_course = $conn->prepare('INSERT INTO chosen_course VALUES(:course_id, :user_email, null, 0.00)');
+        $query_chosen_course = $conn->prepare('INSERT INTO chosen_course VALUES(:course_id, :user_id, null, 0.00)');
         $query_chosen_course->bindValue(':course_id', $course_id);
-        $query_chosen_course->bindValue(':user_email', $user_id);
+        $query_chosen_course->bindValue(':user_id', $user_id);
 
         $query_chosen_course->execute();
 

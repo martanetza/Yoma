@@ -1,7 +1,7 @@
 <?php
 // require_once('has_access.php');
 
-if (!isset($_SESSION['email'])) :
+if (!isset($_SESSION['user_id'])) :
 ?>
 
     <nav>

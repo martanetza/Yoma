@@ -14,7 +14,7 @@ try {
     $result = $statement->fetchAll();
     if (!empty($result)) {
         session_start();
-        $_SESSION['email'] = $email;
+        $_SESSION['user_id'] = $result[0]->user_id;
         $q_log = $conn->prepare('INSERT INTO login_history VALUES(null, :email, null)');
         $q_log->bindValue(':email', $email);
         $q_log->execute();

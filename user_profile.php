@@ -3,19 +3,19 @@ require_once('db_conn.php');
 require_once('has_access.php');
 
 // $course_id = $_GET['course_id'];
-$user_id = $_SESSION['email'];
+$user_id =  $_SESSION['user_id'];
 ?>
 <?php
 
 try {
 
-  $q_chosen_course = $conn->prepare('SELECT * FROM chosen_course INNER JOIN courses ON chosen_course.course_id = courses.course_id INNER JOIN users ON chosen_course.user_email = users.email  WHERE chosen_course.user_email = :email');
-  $q_chosen_course->bindValue(':email', $user_id);
+  $q_chosen_course = $conn->prepare('SELECT * FROM chosen_course INNER JOIN courses ON chosen_course.course_id = courses.course_id INNER JOIN users ON chosen_course.user_id = users.user_id  WHERE chosen_course.user_id = :user_id');
+  $q_chosen_course->bindValue(':user_id', $user_id);
   $q_chosen_course->execute();
   $courses_rows = $q_chosen_course->fetchAll();
 
-  $q_user = $conn->prepare('SELECT * FROM users WHERE email = :email');
-  $q_user->bindValue(':email', $user_id);
+  $q_user = $conn->prepare('SELECT * FROM users WHERE user_id = :user_id');
+  $q_user->bindValue(':user_id', $user_id);
   $q_user->execute();
   $q_user_response = $q_user->fetchAll();
   $q_user_data =   $q_user_response[0];

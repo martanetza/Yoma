@@ -8,7 +8,7 @@ try {
     //check what course the module belonges to and how many modules is in the course
 
     $course_id = $_GET['course_id'];
-    $user_email =  $_SESSION['email'];
+    $user_id =   $_SESSION['user_id'];
     $q_test_modules = $conn->prepare('SELECT * FROM modules WHERE course_id = :course_id');
     $q_test_modules->bindValue(':course_id', $course_id);
     $q_test_modules->execute();
@@ -18,7 +18,7 @@ try {
     //update the progress
     $q_chosen_course_update = $conn->prepare('UPDATE chosen_course SET progress = progress + :add_percentage WHERE course_id = :course_id AND user_email = :user_email');
     $q_chosen_course_update->bindValue(':add_percentage', $percentage);
-    $q_chosen_course_update->bindValue(':user_email', $user_email);
+    $q_chosen_course_update->bindValue(':user_email', $user_id);
     $q_chosen_course_update->bindValue(':course_id', $course_id);
 
     $q_chosen_course_update->execute();

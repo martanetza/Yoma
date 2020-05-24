@@ -2,16 +2,16 @@
 require_once('db_conn.php');
 require_once('has_access.php');
 
-$user_id = $_SESSION['email'];
+$user_id = $_SESSION['user_id'];
 $course_id = $_GET['course_id'];
 $test_template = file_get_contents("test-template.html");
 ?>
 <?php
 
 try {
-  $query_chosen_course = $conn->prepare('SELECT progress FROM chosen_course WHERE course_id = :course_id AND user_email = :user_email');
+  $query_chosen_course = $conn->prepare('SELECT progress FROM chosen_course WHERE course_id = :course_id AND user_id = :user_id');
   $query_chosen_course->bindValue(':course_id', $course_id);
-  $query_chosen_course->bindValue(':user_email', $user_id);
+  $query_chosen_course->bindValue(':user_id', $user_id);
 
   $query_chosen_course->execute();
   $row_chosen_course = $query_chosen_course->fetchAll();
