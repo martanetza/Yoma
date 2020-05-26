@@ -41,6 +41,8 @@ $update = $_GET['update'];
         </div>
         <?php
         try {
+            $conn->beginTransaction();
+
             if ($update === 'true') {
                 $course_name_update = $_POST['course_name_update'];
                 $course_description_update = $_POST['course_description_update'];
@@ -280,7 +282,11 @@ $update = $_GET['update'];
                 </form>
             </div>
         <?php
+            $conn->commit();
         } catch (PDOException $e) {
+            if ($conn->inTransaction()) {
+                $conn->rollback();
+            }
             echo $e;
         }
 

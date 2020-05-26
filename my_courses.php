@@ -2,7 +2,7 @@
 require_once('db_conn.php');
 
 // $author_id = $_GET['author_id'];
-$author_email = "a@a.com";
+$author_id = 1;
 
 ?>
 <!DOCTYPE html>
@@ -41,8 +41,8 @@ $author_email = "a@a.com";
         <?php
         try {
 
-            $q = $conn->prepare('SELECT * FROM courses WHERE author_email= :author_email');
-            $q->bindValue(':author_email', $author_email);
+            $q = $conn->prepare('SELECT * FROM courses WHERE author_id= :author_id');
+            $q->bindValue(':author_id', $author_id);
             $q->execute();
             $data = $q->fetchAll();
 

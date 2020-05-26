@@ -13,6 +13,14 @@ try {
   $q_chosen_course->bindValue(':user_id', $user_id);
   $q_chosen_course->execute();
   $courses_rows = $q_chosen_course->fetchAll();
+  $count =  $q_chosen_course->rowCount();
+
+  $count_finished_course = 0;
+  foreach ($courses_rows as $row) {
+    if ($row->progress == 100) {
+      $count_finished_course += 1;
+    }
+  }
 
   $q_user = $conn->prepare('SELECT * FROM users WHERE user_id = :user_id');
   $q_user->bindValue(':user_id', $user_id);
@@ -52,11 +60,11 @@ try {
             <h4 class="user-name"><?= (!empty($q_user_data->first_name)) ? $q_user_data->first_name : ' ' . ' ' ?> <?= (!empty($q_user_data->last_name)) ? $q_user_data->last_name : ' '; ?></h4>
             <div class="profile-info-item">
               <span>current courses: </span>
-              <span>1</span>
+              <span> <?= $count; ?></span>
             </div>
             <div class="profile-info-item">
               <span>accomplished courses: </span>
-              <span>0</span>
+              <span> <?= $count_finished_course; ?></span>
             </div>
           </div>
           <div class="profile-info user-details">
@@ -115,9 +123,11 @@ try {
             <p>The feed:</p>
             <div class="feed-content">
               <?php
-              $q_messages = $conn->prepare('SELECT * FROM messages WHERE user_email = :email ORDER BY message_date DESC LIMIT 10');
-              $q_messages->bindValue(':email', $user_id);
+
+              $q_messages = $conn->prepare('CALL p_get_message(:user_id) ');
+              $q_messages->bindValue(':user_id', $user_id);
               $q_messages->execute();
+
               $q_messages_response = $q_messages->fetchAll();
               ?>
               <?php foreach ($q_messages_response as $message) : ?>

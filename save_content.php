@@ -7,13 +7,13 @@ try {
     $course_name = $_POST['course_name'];
     $course_desc = $_POST['course_description'];
     $no_of_paparticipants = 0;
-    $author_email = 'a@a.com';
-
-    $query = $conn->prepare('INSERT INTO courses VALUES(null, :course_name, :course_desc, null, :no_of_paparticipants, :author_email)');
+    $author_id = 1;
+    $conn->beginTransaction();
+    $query = $conn->prepare('INSERT INTO courses VALUES(null, :course_name, :course_desc, null, :no_of_paparticipants, :author_id)');
     $query->bindValue(':course_name', $course_name);
     $query->bindValue(':course_desc', $course_desc);
     $query->bindValue(':no_of_paparticipants', $no_of_paparticipants);
-    $query->bindValue(':author_email', $author_email);
+    $query->bindValue(':author_id', $author_id);
     $query->execute();
     $last_id = $conn->lastInsertId();
     echo "New record created successfully. Last inserted ID is: " . $last_id;
@@ -65,7 +65,11 @@ try {
         $query_test->bindValue(':answer', $aAnswer[$i]);
         $query_test->execute();
     }
+    $conn->commit();
 } catch (PDOException $e) {
+    if ($conn->inTransaction()) {
+        $conn->rollback();
+    }
     echo $e;
 }
 

@@ -160,7 +160,8 @@ try {
     async function fetchingDataTest(module_id) {
       var jResponse = await fetch(`get_single_test_item.php?module_id=${module_id}`);
       var jData = await jResponse.json();
-      console.log(jData);
+      var test_item_id = jData[0].test_item_id;
+      console.log("test_item_id", jData[0].test_item_id);
       test_template_copy = test_template_copy.replace("::Question::", jData[0].question);
       test_template_copy = test_template_copy.replace("::answer_A::", jData[0].option_a);
       test_template_copy = test_template_copy.replace("::answer_B::", jData[0].option_b);
@@ -168,9 +169,9 @@ try {
       test_template_copy = test_template_copy.replace("::answer_D::", jData[0].option_d);
 
       document.querySelector('.modal').innerHTML = test_template_copy;
-      controlCheckboxes()
+      controlCheckboxes();
       document.querySelector('.submit-btn').addEventListener('click', () => {
-        validateTheAnswer(jData, course_id, next_module_id)
+        validateTheAnswer(jData, course_id, next_module_id, test_item_id);
       })
     }
     fetchingDataTest(module_id)
@@ -191,7 +192,7 @@ try {
     })
   }
 
-  function validateTheAnswer(data, courseID, next_module_id) {
+  function validateTheAnswer(data, courseID, next_module_id, test_item_id) {
     var allOptions = document.querySelectorAll('#answer_A, #answer_B, #answer_C, #answer_D')
     allOptions.forEach(elm => {
       console.log(elm.value, data[0].answer, elm.checked)
@@ -200,7 +201,7 @@ try {
         document.querySelector('#header-module-' + next_module_id).setAttribute('onclick', `openContent(${next_module_id},0)`);
         document.querySelector('#header-module-' + next_module_id + ' .lock').innerHTML = '<i class="fas fa-lock-open"></i>'
         console.log(document.querySelector('#header-module-' + next_module_id))
-        save_progress(courseID);
+        save_progress(courseID, test_item_id);
       } else if (elm.value !== data[0].answer && elm.checked) {
         document.querySelector('.modal .test-container').innerHTML = '<div class="message"> <p>Wrong<p> </div>';
 
@@ -209,10 +210,14 @@ try {
     })
   }
 
-  function save_progress(courseID) {
+  function save_progress(courseID, test_item_id) {
     (async function() {
-      var jResponse = await fetch(`save_progress.php?course_id=${courseID}`);
-
+      var jResponse = await fetch(`save_progress.php?course_id=${courseID}&test_item_id=${test_item_id}`);
+      var text = await jResponse.text();
+      if (text.includes("Duplicated test entry")) {
+        console.log('Duplicated test entry')
+        document.querySelector('.modal .test-container').innerHTML = '<div class="message"> <p> You have already passed the test successfully <p> </div>';
+      }
     })();
   }
 </script>
