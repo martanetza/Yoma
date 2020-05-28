@@ -15,9 +15,7 @@ try {
     if (!empty($result)) {
         session_start();
         $_SESSION['user_id'] = $result[0]->user_id;
-        // $q_log = $conn->prepare('INSERT INTO login_history VALUES(null, :id, null)');
-        // $q_log->bindValue(':email', $result[0]->user_id);
-        // $q_log->execute();
+       
         $q_log = $conn->prepare('CALL p_insert_login_row(:user_id) ');
         $q_log->bindValue(':user_id', $result[0]->user_id);
         $q_log->execute();

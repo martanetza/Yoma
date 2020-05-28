@@ -107,7 +107,7 @@ try {
                       <input type="hidden" name="course_id" id="chosen_course_id" value="<?= $row->course_id; ?>">
                       <input type="hidden" name="user_id" id="user_id" value="<?= $user_id; ?>">
                       <input type="hidden" name="continue" id="continue" value="<?= ($row_chosen_course) ? 'true' : 'false'; ?>">
-                      <input class="btn" type="submit" name="join_button" id="join_button" value="continue" />
+                      <input class="btn" type="submit" name="join_button" id="user_join_button" value="continue" />
                     </form>
                   </div>
                   <div class="progress-bar">

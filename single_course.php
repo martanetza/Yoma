@@ -21,7 +21,7 @@ try {
   $q_module->execute();
   $modules_rows = $q_module->fetchAll();
   $count =  $q_module->rowCount();
-  $open_lock_number = $progress / (100 / $count);
+  $open_lock_number = round($progress / (100 / $count)) + 1;
 
 
   $q_module_join = $conn->prepare('SELECT * FROM items LEFT JOIN modules ON items.module_id = modules.module_id WHERE course_id=' . $course_id);
@@ -91,7 +91,7 @@ try {
                     <i class="fas fa-arrow-right"></i>
                   </div>
                 <?php endforeach; ?>
-                <div onclick="fetchTest(<?= $row->module_id . ',' . $course_id . ',' . $modules_rows[$key + 1]->module_id; ?>)" class="item-list-element">
+                <div onclick="fetchTest(<?= $row->module_id . ',' . $course_id ?> <?= ($key < count($modules_rows) - 1) ? ',' . $modules_rows[$key + 1]->module_id : '' ?>)" class="item-list-element">
                   <div>Test</div>
                   <i class="fas fa-arrow-right"></i>
                 </div>
@@ -110,6 +110,9 @@ try {
         $q_item->execute();
         $item = $q_item->fetchAll();
         ?>
+        <div class="go-back">
+          <i class="fas fa-angle-left fa-2x"></i>
+        </div>
         <h1>
           <?= $item[0]->item_title ?>
         </h1>
@@ -145,8 +148,16 @@ try {
       var jResponse = await fetch(`get_single_item.php?item_id=${itemId}`);
       var jData = await jResponse.json();
       console.log(jData);
-      document.querySelector('.modal').innerHTML = `<h1>${jData[0].item_title}</h1><p>${jData[0].item_content}</p>`
-
+      document.querySelector('.modal').innerHTML = `
+      <div class="go-back">
+          <i class="fas fa-angle-left fa-2x"></i>
+      </div>
+      <h1>${jData[0].item_title}</h1>
+      <p>${jData[0].item_content}</p>`
+      document.querySelector('.modal').classList.toggle('show-modal')
+      document.querySelector('.go-back').addEventListener("click", () => {
+        document.querySelector('.modal').classList.toggle('show-modal')
+      })
     }
     fetchingData();
 
@@ -158,6 +169,8 @@ try {
     var test_template_copy = test_template;
     console.log(module_id)
     async function fetchingDataTest(module_id) {
+      document.querySelector('.modal').classList.toggle('show-modal')
+
       var jResponse = await fetch(`get_single_test_item.php?module_id=${module_id}`);
       var jData = await jResponse.json();
       var test_item_id = jData[0].test_item_id;
@@ -169,6 +182,7 @@ try {
       test_template_copy = test_template_copy.replace("::answer_D::", jData[0].option_d);
 
       document.querySelector('.modal').innerHTML = test_template_copy;
+
       controlCheckboxes();
       document.querySelector('.submit-btn').addEventListener('click', () => {
         validateTheAnswer(jData, course_id, next_module_id, test_item_id);
@@ -197,14 +211,35 @@ try {
     allOptions.forEach(elm => {
       console.log(elm.value, data[0].answer, elm.checked)
       if (elm.value == data[0].answer && elm.checked) {
-        document.querySelector('.modal .test-container').innerHTML = '<div class="message"> <p>Congratualtions your answer was correct you can move now to the next module <p> </div>';
-        document.querySelector('#header-module-' + next_module_id).setAttribute('onclick', `openContent(${next_module_id},0)`);
-        document.querySelector('#header-module-' + next_module_id + ' .lock').innerHTML = '<i class="fas fa-lock-open"></i>'
-        console.log(document.querySelector('#header-module-' + next_module_id))
+        if (next_module_id) {
+          document.querySelector('.modal .test-container').innerHTML = `
+          <div class="test-icon">
+          <i class="fas fa-lock-open fa-5x"></i>
+          </div>
+          <div class="message"> 
+          <p>Congratualtions your answer was correct you can move now to the next module <p> 
+          </div>`;
+          document.querySelector('#header-module-' + next_module_id).setAttribute('onclick', `openContent(${next_module_id},0)`);
+          document.querySelector('#header-module-' + next_module_id + ' .lock').innerHTML = '<i class="fas fa-lock-open"></i>'
+          console.log(document.querySelector('#header-module-' + next_module_id))
+        } else {
+          document.querySelector('.modal .test-container').innerHTML = `
+          <div class="test-icon">
+          <i class="fas fa-grin-stars fa-5x"></i>
+          </div>
+          <div class="message">
+          <p>Congratualtions! You have finished the course successfully!</p>
+          </div>`;
+        }
         save_progress(courseID, test_item_id);
       } else if (elm.value !== data[0].answer && elm.checked) {
-        document.querySelector('.modal .test-container').innerHTML = '<div class="message"> <p>Wrong<p> </div>';
-
+        document.querySelector('.modal .test-container').innerHTML = `
+        <div class="test-icon error-icon">
+        <i class="fas fa-times fa-5x"></i>
+        </div>
+        <div class="message"> 
+        <p>Ups! That is not a correct ansver. Try to study a bit more and retake the test<p> 
+        </div>`;
       }
 
     })
@@ -216,7 +251,13 @@ try {
       var text = await jResponse.text();
       if (text.includes("Duplicated test entry")) {
         console.log('Duplicated test entry')
-        document.querySelector('.modal .test-container').innerHTML = '<div class="message"> <p> You have already passed the test successfully <p> </div>';
+        document.querySelector('.modal .test-container').innerHTML = `
+        <div class="test-icon">
+        <i class="fas fa-lock-open fa-5x"></i>
+        </div>
+        <div class="message"> 
+        <p> Correct! You have already passed this test successfully before <p> 
+        </div>`;
       }
     })();
   }

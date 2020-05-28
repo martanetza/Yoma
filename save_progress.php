@@ -22,7 +22,6 @@ try {
     $q_test_modules->execute();
     $count = $q_test_modules->rowCount();
     $percentage = (1 * 100) / $count;
-    print_r($percentage);
     //update the progress
     $q_chosen_course_update = $conn->prepare('UPDATE chosen_course SET progress = progress + :add_percentage WHERE course_id = :course_id AND user_id = :user_id');
     $q_chosen_course_update->bindValue(':add_percentage', $percentage);
