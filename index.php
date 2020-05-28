@@ -25,14 +25,11 @@ try {
 ?>
 
   <body>
-    <header>
-      <div class="logo-container">
-        <img src="img/yoma_logo.png" alt="" />
-      </div>
-      <?php
-      require_once('nav.php');
-      ?>
-    </header>
+
+
+    <?php
+    require_once('nav.php');
+    ?>
     <main class="index-main">
       <div class="course-list-wrap">
         <?php

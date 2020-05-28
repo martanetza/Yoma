@@ -46,14 +46,10 @@ try {
   </head>
 
   <body>
-    <header>
-      <div class="logo-container">
-        <img src="img/yoma_logo.png" alt="" />
-      </div>
-      <?php
-      require_once('nav.php');
-      ?>
-    </header>
+
+    <?php
+    require_once('nav.php');
+    ?>
     <main class="single-course-main">
       <div class="single-course-list">
         <div class="single-course-list-wrap">

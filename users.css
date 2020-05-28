@@ -1,6 +1,5 @@
 * {
   box-sizing: border-box;
-  width: 100%;
   margin: 0;
 }
 
@@ -15,47 +14,6 @@
 body {
   font-family: "Avenir", sans-serif;
   color: #505860;
-}
-
-/* ##########################HEADER########################## */
-
-header {
-  background-color: white;
-  height: 65px;
-  box-shadow: 2px 2px 22px 5px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-}
-
-header * {
-  display: inline;
-}
-
-header li {
-  margin: 18px;
-}
-
-header li a {
-  color: #505860;
-  text-decoration: none;
-}
-
-header img {
-  height: 35px;
-  width: 94px;
-  padding-left: 10px;
-  z-index: 100;
-}
-
-ul {
-  display: inline-block;
-  text-align: end;
-  padding-right: 28px;
-}
-
-a:hover,
-a:active {
-  color: #8fa6cb;
 }
 
 /* ############################CREATE ACCOUNT#########################*/

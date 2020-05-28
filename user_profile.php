@@ -41,14 +41,10 @@ try {
   </head>
 
   <body>
-    <header>
-      <div class="logo-container">
-        <img src="img/yoma_logo.png" alt="" />
-      </div>
-      <?php
-      require_once('nav.php');
-      ?>
-    </header>
+
+    <?php
+    require_once('nav.php');
+    ?>
     <main class="main-profile">
       <div class="user-profile-content">
         <div class="user-profile-content-col">

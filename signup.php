@@ -5,16 +5,15 @@
    <meta charset="UTF-8" />
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
    <link rel="stylesheet" href="users.css" />
+   <link rel="stylesheet" href="app.css" />
    <title>Create an account</title>
  </head>
 
  <body>
-   <header>
-     <img src="./img/logo.png" alt="logo" />
-     <?php
-      require_once('nav.php');
-      ?>
-   </header>
+
+   <?php
+    require_once('nav.php');
+    ?>
    <main>
      <div class="container">
        <h1>Create an account</h1>
