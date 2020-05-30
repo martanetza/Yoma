@@ -9,6 +9,10 @@ $test_template = file_get_contents("test-template.html");
 <?php
 
 try {
+  $q_courses = $conn->prepare('SELECT * FROM courses WHERE course_id=' . $course_id);
+  $q_courses->execute();
+  $courses_rows =  $q_courses->fetchAll();
+
   $query_chosen_course = $conn->prepare('SELECT progress FROM chosen_course WHERE course_id = :course_id AND user_id = :user_id');
   $query_chosen_course->bindValue(':course_id', $course_id);
   $query_chosen_course->bindValue(':user_id', $user_id);
@@ -56,7 +60,7 @@ try {
           <a href="index.php">
             <i class="fas fa-chevron-left"></i>
           </a>
-          <h1>Lorem Ipsum</h1>
+          <h1><?= $courses_rows[0]->course_name ?></h1>
         </div>
         <div class="single-course-list-wrap">
           <?php foreach ($modules_rows as $key => $row) : ?>

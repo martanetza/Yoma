@@ -3,19 +3,19 @@
 require_once('db_conn.php');
 
 $email = trim($_GET['email']);
-$password = trim($_GET['password']);
+$password = md5(trim($_GET['password']));
+
 try {
-    // $password = md5($password); //encript password before comparing 
-    $sql = 'SELECT * FROM users WHERE email = :email AND password = :password';
+    $sql = 'SELECT * FROM users WHERE email = :email';
     $statement = $conn->prepare($sql);
     $statement->bindValue('email', $email);
-    $statement->bindValue('password', $password);
     $statement->execute();
     $result = $statement->fetchAll();
-    if (!empty($result)) {
+    $hash = $result[0]->password;
+    if ($password == $hash) {
         session_start();
         $_SESSION['user_id'] = $result[0]->user_id;
-       
+
         $q_log = $conn->prepare('CALL p_insert_login_row(:user_id) ');
         $q_log->bindValue(':user_id', $result[0]->user_id);
         $q_log->execute();
