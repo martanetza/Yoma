@@ -21,7 +21,14 @@
                     <a href="">About</a>
                 </li>
                 <li>
-                    <a href="login.php">Login</a>
+                    <a href="login.php">
+                        <button class="login-mobile-btn">Login</button>
+                    </a>
+                </li>
+                <li>
+                    <a href="signup.php">
+                        <button class="signup-mobile-btn">Signup</button>
+                    </a>
                 </li>
             </ul>
         <?php else : ?>
@@ -36,7 +43,9 @@
                     <a href="user_profile.php">Your profile</a>
                 </li>
                 <li>
-                    <a href="logout.php">Log out</a>
+                    <a href="logout.php">
+                        <button class="signup-mobile-btn">Log out</button>
+                    </a>
                 </li>
             </ul>
 
@@ -46,6 +55,8 @@
     </nav>
 
     <div id="menuLinks">
+
+        <img onclick="xFunction()" class="x" src="img/close.svg" alt="" />
         <?php if (!isset($_SESSION['user_id'])) : ?>
 
             <ul>
@@ -56,7 +67,14 @@
                     <a href="">About</a>
                 </li>
                 <li>
-                    <a href="login.php">Login</a>
+                    <a href="login.php">
+                        <button class="login-mobile-btn">Login</button>
+                    </a>
+                </li>
+                <li>
+                    <a href="signup.php">
+                        <button class="signup-mobile-btn">Signup</button>
+                    </a>
                 </li>
             </ul>
         <?php else : ?>
@@ -71,10 +89,13 @@
                     <a href="user_profile.php">Your profile</a>
                 </li>
                 <li>
-                    <a href="logout.php">Log out</a>
+                    <a href="logout.php">
+                        <button class="signup-mobile-btn">Log out</button>
+                    </a>
                 </li>
             </ul>
         <?php endif; ?>
+
     </div>
 </header>
 <script src="script.js"></script>

@@ -36,6 +36,7 @@ main {
   display: flex;
   flex-direction: column;
   text-align: center;
+  margin-top: 80px;
 }
 
 .container p:last-child {
@@ -44,7 +45,7 @@ main {
 
 @media only screen and (min-width: 768px) {
   .container {
-    width: 75%;
+    width: 40%;
   }
 }
 
@@ -135,11 +136,12 @@ p {
   display: flex;
   flex-direction: column;
   text-align: center;
+  margin-top: 80px;
 }
 
 @media only screen and (min-width: 768px) {
   .container-log-in {
-    width: 75%;
+    width: 40%;
   }
 }
 

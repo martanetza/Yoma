@@ -41,6 +41,45 @@ header {
 #menuLinks {
   display: none;
 }
+
+.login-mobile-btn {
+  width: 280px;
+  height: 52px;
+  font-size: 13px;
+  border-radius: 33px;
+  border: none;
+  font-size: 22px;
+  color: #8fa6cb;
+}
+@media only screen and (min-width: 768px) {
+  .login-mobile-btn {
+    width: 100px;
+    height: fit-content;
+    font-size: 16px;
+    padding: 10px;
+    cursor: pointer;
+  }
+}
+
+.signup-mobile-btn {
+  width: 280px;
+  height: 52px;
+  font-size: 13px;
+  border-radius: 33px;
+  border: 1px solid;
+  font-size: 22px;
+  color: white;
+  background-color: #8fa6cb;
+}
+@media only screen and (min-width: 768px) {
+  .signup-mobile-btn {
+    width: 100px;
+    height: fit-content;
+    font-size: 16px;
+    padding: 10px;
+    cursor: pointer;
+  }
+}
 /* For small devices (landscape phones): */
 
 @media (max-width: 599px) {
@@ -55,25 +94,38 @@ header {
   }
 
   #menuLinks ul {
-    margin-top: 50px;
+    margin-top: 100px;
     list-style: none;
     padding: 0px;
     text-align: center;
   }
 
   #menuLinks ul li {
-    margin-bottom: 20px;
+    padding: 25px;
   }
 
   /* Hide the links inside the navigation menu (except for logo/home) */
   #menuLinks {
     display: none;
+    text-align: center;
+    height: 100vh;
     width: 100%;
+    background-color: #8fa6cb;
+    z-index: 200;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .x {
+    position: absolute;
+    top: 7%;
+    right: 12%;
   }
 
   /* Style navigation menu links */
   a {
-    color: #505860;
+    color: white;
     text-decoration: none;
     font-size: 22px;
     display: block;
@@ -101,7 +153,8 @@ header {
 }
 
 nav {
-  width: 30%;
+  width: 35%;
+  position: relative;
 }
 
 .go-back {
@@ -125,6 +178,11 @@ nav .desktop-nav {
   nav .desktop-nav {
     display: flex;
   }
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
 }
 
 nav ul a {
@@ -190,6 +248,22 @@ nav ul a:hover {
   width: 100%;
   min-height: 100vh;
   padding-top: 100px;
+}
+
+.course-title {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.course-title a {
+  height: fit-content;
+}
+
+.course-title h1 {
+  font-weight: normal;
 }
 
 @media only screen and (min-width: 576px) {

@@ -52,6 +52,12 @@ try {
     ?>
     <main class="single-course-main">
       <div class="single-course-list">
+        <div class="course-title">
+          <a href="index.php">
+            <i class="fas fa-chevron-left"></i>
+          </a>
+          <h1>Lorem Ipsum</h1>
+        </div>
         <div class="single-course-list-wrap">
           <?php foreach ($modules_rows as $key => $row) : ?>
             <?php
