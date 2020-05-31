@@ -31,7 +31,7 @@ $update = $_GET['update'];
                 </div>
             </div>
             <div class="sidebar-nav-element">
-                <a href="my_courses.php">
+                <a href="admin.php">
                     My courses
                 </a>
                 <div>

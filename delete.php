@@ -30,4 +30,4 @@ try {
     echo $e;
 }
 
-header('Location: my_courses.php');
+header('Location: admin.php');

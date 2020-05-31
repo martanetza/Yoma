@@ -29,7 +29,10 @@ header {
   -moz-box-shadow: 0px 10px 5px -5px rgba(0, 0, 0, 0.21);
   box-shadow: 0px 10px 5px -5px rgba(0, 0, 0, 0.21);
 }
-
+.logo-container {
+  height: 100%;
+  width: auto;
+}
 .icon {
   display: none;
 }
@@ -42,7 +45,7 @@ header {
   display: none;
 }
 
-.login-mobile-btn {
+.login-btn {
   width: 280px;
   height: 52px;
   font-size: 13px;
@@ -52,7 +55,7 @@ header {
   color: #8fa6cb;
 }
 @media only screen and (min-width: 768px) {
-  .login-mobile-btn {
+  .login-btn {
     width: 100px;
     height: fit-content;
     font-size: 16px;
@@ -61,7 +64,7 @@ header {
   }
 }
 
-.signup-mobile-btn {
+.signup-btn {
   width: 280px;
   height: 52px;
   font-size: 13px;
@@ -72,7 +75,7 @@ header {
   background-color: #8fa6cb;
 }
 @media only screen and (min-width: 768px) {
-  .signup-mobile-btn {
+  .signup-btn {
     width: 100px;
     height: fit-content;
     font-size: 16px;

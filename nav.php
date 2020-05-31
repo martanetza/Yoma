@@ -1,7 +1,7 @@
 <header>
-    <div class="logo-container">
+    <a href="index.php" class="logo-container">
         <img src="img/yoma_logo.png" alt="" />
-    </div>
+    </a>
 
     <nav>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -15,26 +15,26 @@
 
             <ul class="desktop-nav">
                 <li>
-                    <a href="index.php">Courses</a>
+                    <a href="all_courses.php">Courses</a>
                 </li>
                 <li>
                     <a href="">About</a>
                 </li>
                 <li>
                     <a href="login.php">
-                        <button class="login-mobile-btn">Login</button>
+                        <button class="login-btn">Login</button>
                     </a>
                 </li>
                 <li>
                     <a href="signup.php">
-                        <button class="signup-mobile-btn">Signup</button>
+                        <button class="signup-btn">Signup</button>
                     </a>
                 </li>
             </ul>
         <?php else : ?>
             <ul class="desktop-nav">
                 <li>
-                    <a href="index.php">Courses</a>
+                    <a href="all_courses.php">Courses</a>
                 </li>
                 <li>
                     <a href="">About</a>
@@ -44,7 +44,7 @@
                 </li>
                 <li>
                     <a href="logout.php">
-                        <button class="signup-mobile-btn">Log out</button>
+                        <button class="signup-btn">Log out</button>
                     </a>
                 </li>
             </ul>
@@ -61,26 +61,26 @@
 
             <ul>
                 <li>
-                    <a href="index.php">Courses</a>
+                    <a href="all_courses.php">Courses</a>
                 </li>
                 <li>
                     <a href="">About</a>
                 </li>
                 <li>
                     <a href="login.php">
-                        <button class="login-mobile-btn">Login</button>
+                        <button class="login-btn">Login</button>
                     </a>
                 </li>
                 <li>
                     <a href="signup.php">
-                        <button class="signup-mobile-btn">Signup</button>
+                        <button class="signup-btn">Signup</button>
                     </a>
                 </li>
             </ul>
         <?php else : ?>
             <ul>
                 <li>
-                    <a href="index.php">Courses</a>
+                    <a href="all_courses.php">Courses</a>
                 </li>
                 <li>
                     <a href="">About</a>
@@ -90,7 +90,7 @@
                 </li>
                 <li>
                     <a href="logout.php">
-                        <button class="signup-mobile-btn">Log out</button>
+                        <button class="signup-btn">Log out</button>
                     </a>
                 </li>
             </ul>

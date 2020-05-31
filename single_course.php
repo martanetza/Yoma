@@ -57,7 +57,7 @@ try {
     <main class="single-course-main">
       <div class="single-course-list">
         <div class="course-title">
-          <a href="index.php">
+          <a href="all_courses.php">
             <i class="fas fa-chevron-left"></i>
           </a>
           <h1><?= $courses_rows[0]->course_name ?></h1>
