@@ -1,6 +1,6 @@
 <?php
-require_once('db_conn.php');
-require_once('has_access.php');
+require_once('../db_conn.php');
+require_once('../has_access.php');
 
 // calculate the progress
 

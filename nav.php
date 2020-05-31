@@ -1,6 +1,6 @@
 <header>
     <a href="index.php" class="logo-container">
-        <img src="img/yoma_logo.png" alt="" />
+        <img src="img/logo.png" alt="" />
     </a>
 
     <nav>
@@ -98,4 +98,4 @@
 
     </div>
 </header>
-<script src="script.js"></script>
+<script src="JS/script.js"></script>

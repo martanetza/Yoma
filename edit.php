@@ -1,8 +1,8 @@
 <?php
 require_once('db_conn.php');
 
-$sModuleTemplate = file_get_contents('module-template.html');
-$sLessonTemplate = file_get_contents('lesson-template.html');
+$sModuleTemplate = file_get_contents('templates/module-template.html');
+$sLessonTemplate = file_get_contents('templates/lesson-template.html');
 $course_id = $_GET['course_id'];
 $update = $_GET['update'];
 ?>
@@ -12,7 +12,7 @@ $update = $_GET['update'];
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="admin.css" />
+    <link rel="stylesheet" href="CSS/admin.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
 
     <title>Document</title>
@@ -296,36 +296,7 @@ $update = $_GET['update'];
 
 </html>
 <script>
-    function chanegTitle() {
-
-        event.target.parentElement.parentElement.querySelector(
-            ".module-header div"
-        ).textContent = event.target.value;
-        console.log(event.target.parentElement.parentElement)
-    }
-
-
-
-    function addModule() {
-        event.preventDefault();
-
-        var moduleTemplate = `<?php echo $sModuleTemplate; ?>`
-        document
-            .querySelector("form")
-            .insertAdjacentHTML("beforeend", moduleTemplate);
-    }
-
-    function openModule() {
-        event.target.parentElement.querySelector(".module-main").classList.toggle("show-block");
-    }
-
-    var number_of_module_lessons = 0
-
-    function addLesson() {
-        event.preventDefault();
-        number_of_module_lessons++
-        var lessonTemplate = `<?php echo $sLessonTemplate; ?>`
-        event.target.parentElement.querySelector(".number_of_items").value = number_of_module_lessons
-        event.target.parentElement.querySelector(".module-items-template").insertAdjacentHTML("beforeend", lessonTemplate);
-    }
+    var moduleTemplate = `<?php echo $sModuleTemplate; ?>`;
+    var lessonTemplate = `<?php echo $sLessonTemplate; ?>`;
 </script>
+<script src="JS/edit.js"></script>

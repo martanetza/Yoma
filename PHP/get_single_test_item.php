@@ -1,5 +1,5 @@
 <?php
-require_once('db_conn.php');
+require_once('../db_conn.php');
 
 try {
     $module_id = $_GET['module_id'];

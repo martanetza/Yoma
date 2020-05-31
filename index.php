@@ -12,8 +12,8 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="header.css" />
+  <link rel="stylesheet" href="CSS/style.css" />
+  <link rel="stylesheet" href="CSS/header.css" />
 
   <title>Welcome to YOMA</title>
 </head>
@@ -168,8 +168,7 @@ session_start();
       property of their respective owners. All rights reserved.</span>
     <img class="img-footer" src="img/footer.png" alt="" />
   </footer>
-  <script src="script.js"></script>
-  <script src="menu.js"></script>
+  <script src="JS/script.js"></script>
 </body>
 
 </html>

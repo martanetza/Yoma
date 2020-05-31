@@ -1,6 +1,6 @@
 <?php
+require_once('../db_conn.php');
 $email = $_GET['email'];
-require_once('db_conn.php');
 
 try {
 

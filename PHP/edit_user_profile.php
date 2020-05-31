@@ -1,5 +1,5 @@
 <?php
-require_once('db_conn.php');
+require_once('../db_conn.php');
 
 $user_email = trim($_POST['user_email']);
 $first_name = trim($_POST['first_name']);

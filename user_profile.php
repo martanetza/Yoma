@@ -36,7 +36,9 @@ try {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
-    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="CSS/app.css" />
+    <link rel="stylesheet" href="CSS/header.css" />
+
     <title>Document</title>
   </head>
 
@@ -99,7 +101,7 @@ try {
                 <div class="user-course-list-wrapper">
                   <h4 class="course-name"><?= $row->course_name; ?></h4>
                   <div class="continue-btn">
-                    <form action="join_chosen_course.php" method="POST">
+                    <form action="PHP/join_chosen_course.php" method="POST">
                       <input type="hidden" name="course_id" id="chosen_course_id" value="<?= $row->course_id; ?>">
                       <input type="hidden" name="user_id" id="user_id" value="<?= $user_id; ?>">
                       <input type="hidden" name="continue" id="continue" value="<?= ($row_chosen_course) ? 'true' : 'false'; ?>">
@@ -182,26 +184,4 @@ try {
 }
 ?>
 
-<script>
-  function openModal() {
-    document.querySelector(".modal-user-profile").style.display = "block"
-  }
-
-  function save_changes() {
-    var password = document.querySelector("#password").value
-    var confirm_password = document.querySelector("#confirm_password").value
-    if (password != confirm_password) {
-      document.querySelector(".user-password-validation-message").textContent = "The password didn't match. Try again"
-    } else {
-      (async function() {
-        var oForm = document.querySelector("#user-info-edit-form");
-        var jConnection = await fetch("edit_user_profile.php", {
-          method: "POST",
-          body: new FormData(oForm)
-        });
-        document.querySelector(".modal-user-profile").style.display = "none"
-        window.location.href = "http://localhost/YOMA/user_profile.php";
-      })();
-    }
-  }
-</script>
+<script src="JS/user_profile.js"></script>

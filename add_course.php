@@ -1,6 +1,6 @@
 <?php
-$sModuleTemplate = file_get_contents('module-template.html');
-$sLessonTemplate = file_get_contents('lesson-template.html');
+$sModuleTemplate = file_get_contents('templates/module-template.html');
+$sLessonTemplate = file_get_contents('templates/lesson-template.html');
 
 ?>
 <!DOCTYPE html>
@@ -9,8 +9,9 @@ $sLessonTemplate = file_get_contents('lesson-template.html');
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="CSS/admin.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
+  <link rel="stylesheet" href="CSS/header.css" />
 
   <title>Document</title>
 </head>
@@ -37,7 +38,7 @@ $sLessonTemplate = file_get_contents('lesson-template.html');
       </div>
     </div>
     <div class="content-wrap">
-      <form action="save_content.php" method="POST">
+      <form action="PHP/save_content.php" method="POST">
         <input id="submit-button" class="btn" type="submit" value="save" />
         <input id="course_title" name="course_name" type="text" placeholder="Course name" />
         <textarea placeholder="Course description" id="course_description" name="course_description"></textarea>
@@ -80,7 +81,7 @@ $sLessonTemplate = file_get_contents('lesson-template.html');
                   <input class="option_d" name="option_d[]" type="text" placeholder="Option D" />
                 </div>
                 <div class="col-answer">
-                  <select name="answer[]" class="answer-select" multiple>
+                  <select name="answer[]" class="answer-select">
                     <option value="">choose</option>
                     <option value="a">a</option>
                     <option value="b">b</option>
@@ -120,36 +121,7 @@ $sLessonTemplate = file_get_contents('lesson-template.html');
 
 </html>
 <script>
-  function chanegTitle() {
-
-    event.target.parentElement.parentElement.querySelector(
-      ".module-header div"
-    ).textContent = event.target.value;
-    console.log(event.target.parentElement.parentElement)
-  }
-
-
-
-  function addModule() {
-    event.preventDefault();
-
-    var moduleTemplate = `<?php echo $sModuleTemplate; ?>`
-    document
-      .querySelector("form")
-      .insertAdjacentHTML("beforeend", moduleTemplate);
-  }
-
-  function openModule() {
-    event.target.parentElement.querySelector(".module-main").classList.toggle("show-block");
-  }
-
-  var number_of_module_lessons = 1
-
-  function addLesson() {
-    event.preventDefault();
-    number_of_module_lessons++
-    var lessonTemplate = `<?php echo $sLessonTemplate; ?>`
-    event.target.parentElement.querySelector(".number_of_items").value = number_of_module_lessons
-    event.target.parentElement.querySelector(".module-items-template").insertAdjacentHTML("beforeend", lessonTemplate);
-  }
+  var moduleTemplate = `<?php echo $sModuleTemplate; ?>`;
+  var lessonTemplate = `<?php echo $sLessonTemplate; ?>`;
 </script>
+<script src="JS/add_course.js"></script>

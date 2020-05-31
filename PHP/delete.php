@@ -1,5 +1,5 @@
 <?php
-require_once('db_conn.php');
+require_once('../db_conn.php');
 
 try {
     $course_id = $_GET['course_id'];
@@ -30,4 +30,4 @@ try {
     echo $e;
 }
 
-header('Location: admin.php');
+header('Location: ../admin.php');

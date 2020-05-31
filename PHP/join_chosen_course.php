@@ -1,6 +1,6 @@
 <?php
-require_once('db_conn.php');
-require_once('has_access.php');
+require_once('../db_conn.php');
+require_once('../has_access.php');
 
 ?>
 
@@ -26,7 +26,7 @@ try {
     } else {
         echo ' row already exist';
     }
-    header('Location: single_course.php?course_id=' . $course_id);
+    header('Location: ../single_course.php?course_id=' . $course_id);
 
 ?>
 <?php

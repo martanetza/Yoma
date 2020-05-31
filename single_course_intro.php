@@ -33,7 +33,9 @@ try {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
-    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="CSS/app.css" />
+    <link rel="stylesheet" href="CSS/header.css" />
+
 
     <title>Document</title>
   </head>
@@ -44,7 +46,7 @@ try {
     require_once('nav.php');
     ?>
     <main class="into-main">
-      <form action="join_chosen_course.php" method="POST">
+      <form action="PHP/join_chosen_course.php" method="POST">
         <h1>
           <?= $courses_rows[0]->course_name; ?>
         </h1>
