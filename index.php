@@ -11,9 +11,9 @@ session_start();
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="CSS/style.css" />
-  <link rel="stylesheet" href="CSS/header.css" />
+  <link rel="shortcut icon" href="minify-img/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="minify-css/style.css" />
+  <link rel="stylesheet" href="minify-css/header.css" />
 
   <title>Welcome to YOMA</title>
 </head>
@@ -26,8 +26,8 @@ session_start();
   ?>
 
   <main>
-    <img class="img-text" src="img/text.png" />
-    <img class="intro" src="img/intro.png" />
+    <img class="img-text" src="minify-img/text.png" />
+    <img class="intro" src="minify-img/intro.png" />
     <p class="main_p1">
       Are you a beginner web developer who needs some guidelines? Or a student
       who is struggling with the university materials?
@@ -42,8 +42,8 @@ session_start();
 
   <section class="section1">
     <h1>How does it work?</h1>
-    <img class="red" src="img/red.png" alt="" />
-    <img class="blue" src="img/blue.png" alt="" />
+    <img class="red" src="minify-img/red.png" alt="" />
+    <img class="blue" src="minify-img/blue.png" alt="" />
   </section>
 
   <section class="section2">
@@ -51,7 +51,7 @@ session_start();
     <div class="slides-container">
       <div class="currentSlide">
         <h2>Study</h2>
-        <img class="study" src="img/study.png" />
+        <img class="study" src="minify-img/study.png" />
         <div class="text">
           Our structured courses allow participants to follow and focus
           effortlessly. Gaining knowledge and skills was never easier.
@@ -63,7 +63,7 @@ session_start();
 
       <div class="currentSlide">
         <h2>Challenge yourself</h2>
-        <img class="challenge" src="img/challenge.png" />
+        <img class="challenge" src="minify-img/challenge.png" />
         <div class="text">
           The best way to learn is by challenging yourself everyday. Keep
           track on your daily process, plan and form habits.
@@ -75,7 +75,7 @@ session_start();
 
       <div class="currentSlide">
         <h2>Grow</h2>
-        <img class="grow" src="img/grow.png" />
+        <img class="grow" src="minify-img/grow.png" />
         <div class="text">
           Building your knowledge creates confidence that brings result,
           develops skills and achieves success. YOMA is here to help you grow.
@@ -83,8 +83,8 @@ session_start();
       </div>
     </div>
 
-    <a class="prev" onclick="plusSlides(-1)"><img src="img/prev.png" /></a>
-    <a class="next" onclick="plusSlides(1)"><img src="img/next.png" /></a>
+    <a class="prev" onclick="plusSlides(-1)"><img src="minify-img/prev.png" /></a>
+    <a class="next" onclick="plusSlides(1)"><img src="minify-img/next.png" /></a>
 
     <div style="text-align: center;">
       <span class="dot" onclick="currentSlide(1)"></span>
@@ -100,9 +100,9 @@ session_start();
       helps you study smarter
     </p>
     <div class="box">
-      <a href="#"><img class="js" src="img/js.png" alt="" /></a>
-      <a href="#"> <img class="db" src="img/db.png" alt="" /></a>
-      <a href="#"> <img class="php" src="img/php.png" alt="" /></a>
+      <a href="#"><img class="js" src="minify-img/js.png" alt="" /></a>
+      <a href="#"> <img class="db" src="minify-img/db.png" alt="" /></a>
+      <a href="#"> <img class="php" src="minify-img/php.png" alt="" /></a>
     </div>
     <a href="all_courses.php" class="white-btn">See more</a>
   </section>
@@ -166,9 +166,9 @@ session_start();
     </div>
     <span>© copyright 2020 Yoma.com. All other trademarks and copyrights are the
       property of their respective owners. All rights reserved.</span>
-    <img class="img-footer" src="img/footer.png" alt="" />
+    <img class="img-footer" src="minify-img/footer.png" alt="" />
   </footer>
-  <script src="JS/script.js"></script>
+  <script src="minify-js/script.js"></script>
 </body>
 
 </html>

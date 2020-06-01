@@ -43,9 +43,9 @@ try {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
-    <link rel="stylesheet" href="CSS/app.css" />
-    <link rel="stylesheet" href="CSS/header.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/minify-js/all.min.js"></script>
+    <link rel="stylesheet" href="minify-css/app.css" />
+    <link rel="stylesheet" href="minify-css/header.css" />
 
 
     <title>Document</title>
@@ -142,4 +142,4 @@ try {
 <script>
   var test_template = `<?= $test_template; ?>`;
 </script>
-<script src="JS/single_course.js"></script>
+<script src="minify-js/single_course.js"></script>

@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="CSS/users.css" />
-  <link rel="stylesheet" href="CSS/app.css" />
-  <link rel="stylesheet" href="CSS/header.css" />
+  <link rel="stylesheet" href="minify-css/users.css" />
+  <link rel="stylesheet" href="minify-css/app.css" />
+  <link rel="stylesheet" href="minify-css/header.css" />
 
   <title>LOG IN</title>
 </head>
@@ -39,4 +39,4 @@
 
 </html>
 
-<script src="JS/login.js"></script>
+<script src="minify-js/login.js"></script>

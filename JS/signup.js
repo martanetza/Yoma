@@ -46,7 +46,7 @@ function post_user() {
       document.querySelector(
         ".container"
       ).innerHTML = `<div class="signup-success-box">
-          <img class="success-icon" src="img/success_icon.png" alt="success-icon">
+          <img class="success-icon" src="minify-img/success_icon.png" alt="success-icon">
           <p class="signup-success-text" > ${text}  </p>
           </div>`;
     })();

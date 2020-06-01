@@ -1,11 +1,11 @@
 <header>
     <a href="index.php" class="logo-container">
-        <img src="img/logo.png" alt="" />
+        <img src="minify-img/logo.png" alt="" />
     </a>
 
     <nav>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-            <img class="menu" src="img/menu.svg" alt="" />
+            <img class="menu" src="minify-img/menu.svg" alt="" />
         </a>
         <?php
         // require_once('has_access.php');
@@ -56,7 +56,7 @@
 
     <div id="menuLinks">
 
-        <img onclick="xFunction()" class="x" src="img/close.svg" alt="" />
+        <img onclick="xFunction()" class="x" src="minify-img/close.svg" alt="" />
         <?php if (!isset($_SESSION['user_id'])) : ?>
 
             <ul>
@@ -98,4 +98,4 @@
 
     </div>
 </header>
-<script src="JS/script.js"></script>
+<script src="minify-js/script.js"></script>

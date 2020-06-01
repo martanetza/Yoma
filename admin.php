@@ -13,8 +13,8 @@ $author_id = 1;
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="CSS/admin.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
+    <link rel="stylesheet" href="minify-css/admin.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/minify-js/all.min.js"></script>
 
     <title>Document</title>
 </head>
@@ -96,4 +96,4 @@ $author_id = 1;
     var moduleTemplate = `<?php echo $sModuleTemplate; ?>`;
     var lessonTemplate = `<?php echo $sLessonTemplate; ?>`;
 </script>
-<script src="JS/admin.js"></script>
+<script src="minify-js/admin.js"></script>
