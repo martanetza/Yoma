@@ -1,7 +1,6 @@
 var gulp = require("gulp");
 var minifyCSS = require("gulp-minify-css");
-var minifyJS = require("gulp-uglify");
-const minify = require("gulp-minify");
+var minify = require("gulp-minify");
 
 // task
 gulp.task("compressCSS", function () {

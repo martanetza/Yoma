@@ -18,9 +18,6 @@
                     <a href="all_courses.php">Courses</a>
                 </li>
                 <li>
-                    <a href="">About</a>
-                </li>
-                <li>
                     <a href="login.php">
                         <button class="login-btn">Login</button>
                     </a>
@@ -37,10 +34,7 @@
                     <a href="all_courses.php">Courses</a>
                 </li>
                 <li>
-                    <a href="">About</a>
-                </li>
-                <li>
-                    <a href="user_profile.php">Your profile</a>
+                    <a href="user_profile.php?id=<?= $_SESSION['user_id'] ?>">Your profile</a>
                 </li>
                 <li>
                     <a href="logout.php">
@@ -62,9 +56,6 @@
             <ul>
                 <li>
                     <a href="all_courses.php">Courses</a>
-                </li>
-                <li>
-                    <a href="">About</a>
                 </li>
                 <li>
                     <a href="login.php">

@@ -1,0 +1,29 @@
+.footer-min {
+  position: fixed;
+  bottom: 0px;
+  background-color: white;
+  padding-bottom: 3px;
+  padding-top: 3px;
+
+  width: 100vw;
+  border-top: 1px solid lightgrey;
+}
+
+.footer-boxes-min {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer-boxes-min p:first-child,
+.footer-boxes-min p:nth-child(2) {
+  padding-right: 5px;
+  border-right: 1px solid black;
+  margin-right: 5px;
+}
+
+footer span {
+  width: 100vw;
+  text-align: center;
+  display: block;
+  font-size: 11px;
+}
