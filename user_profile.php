@@ -27,6 +27,7 @@ try {
   $q_user->execute();
   $q_user_response = $q_user->fetchAll();
   $q_user_data =   $q_user_response[0];
+
 ?>
 
   <!DOCTYPE html>
@@ -66,6 +67,7 @@ try {
               <span>accomplished courses: </span>
               <span> <?= $count_finished_course; ?></span>
             </div>
+
           </div>
           <div class="profile-info user-details">
             <h4>Personal info:</h4>
@@ -162,12 +164,12 @@ try {
             <input type="text" name="school" id="school" placeholder="School" value="<?= (!empty($q_user_data->school)) ? $q_user_data->school : ''; ?>">
           </div>
           <div class="input-container">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="Password" value="<?= (!empty($q_user_data->password)) ? $q_user_data->password : ''; ?>">
+            <label for="password">New password</label>
+            <input type="password" name="password" id="password" placeholder="New password">
           </div>
           <div class="input-container">
             <label for="confirm_password">Confirm password</label>
-            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password" value="<?= (!empty($q_user_data->password)) ? $q_user_data->password : ''; ?>">
+            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm new password">
             <p class="user-password-validation-message"></p>
           </div>
           <div class="input-container">

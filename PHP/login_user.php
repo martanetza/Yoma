@@ -3,8 +3,7 @@
 require_once('../db_conn.php');
 
 $email = trim($_GET['email']);
-$password = md5(trim($_GET['password']));
-
+$password = trim($_GET['password']);
 try {
     $sql = 'SELECT * FROM users WHERE email = :email';
     $statement = $conn->prepare($sql);
@@ -12,8 +11,8 @@ try {
     $statement->execute();
     $result = $statement->fetchAll();
     if ($result) {
-        $hash = $result[0]->password;
-        if ($password == $hash) {
+        $hashed_password = $result[0]->password;
+        if (password_verify($password, $hashed_password)) {
             session_start();
             $_SESSION['user_id'] = $result[0]->user_id;
 
