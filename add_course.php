@@ -11,7 +11,6 @@ $sLessonTemplate = file_get_contents('templates/lesson-template.html');
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="minify-css/admin.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
-  <link rel="stylesheet" href="minify-css/header.css" />
 
   <title>Document</title>
 </head>
