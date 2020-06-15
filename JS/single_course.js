@@ -18,6 +18,7 @@ function fetchSingleItemContent(itemId) {
       <div class="go-back">
           <i class="fas fa-angle-left fa-2x"></i>
       </div>
+      <button onclick="openComments(${jData[0].item_id})" class="btn comments-btn"><i class="far fa-comments"></i> comments</button>
       <h1>${jData[0].item_title}</h1>
       <p>${jData[0].item_content}</p>`;
     document.querySelector(".modal").classList.toggle("show-modal");

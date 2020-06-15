@@ -1,0 +1,58 @@
+.comment-title {
+  width: 90%;
+  margin: 20px auto;
+}
+.comments-btn {
+  background-color: #73ba9b;
+  font-size: 16px;
+  width: fit-content;
+  padding: 5px 10px;
+}
+.comments-btn svg {
+  margin-right: 10px;
+}
+.comments-btn svg path {
+  color: white;
+}
+/* comment form */
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 50px;
+}
+.comment-form input[type="text"],
+.comment-form textarea {
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+}
+
+.comment-form textarea {
+  min-height: 100px;
+}
+
+/* comments */
+article {
+  width: 90%;
+  margin: auto;
+  font-family: sans-serif;
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 40px;
+}
+article header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 0px;
+  box-shadow: none;
+}
+article header h3 {
+  margin: 0;
+}
+article p {
+  white-space: pre-wrap;
+}

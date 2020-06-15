@@ -5,6 +5,7 @@ require_once('has_access.php');
 $user_id = $_SESSION['user_id'];
 $course_id = $_GET['course_id'];
 $test_template = file_get_contents("templates/test-template.html");
+$comment_template = file_get_contents("templates/comments-template.html");
 ?>
 <?php
 
@@ -47,6 +48,7 @@ try {
     <link rel="stylesheet" href="CSS/app.css" />
     <link rel="stylesheet" href="minify-css/header.css" />
     <link rel="stylesheet" href="CSS/footer.css" />
+    <link rel="stylesheet" href="CSS/additional.css" />
 
 
 
@@ -123,11 +125,12 @@ try {
         <div class="go-back">
           <i class="fas fa-angle-left fa-2x"></i>
         </div>
+        <button onclick="openComments(<?= $item[0]->item_id; ?>)" class="btn comments-btn"><i class="far fa-comments"></i> comments</button>
         <h1>
-          <?= $item[0]->item_title ?>
+          <?= $item[0]->item_title; ?>
         </h1>
         <p>
-          <?= $item[0]->item_content ?>
+          <?= $item[0]->item_content; ?>
         </p>
 
       </div>
@@ -144,6 +147,63 @@ try {
 
 ?>
 <script>
+  //script for comments mongodb
+
   var test_template = `<?= $test_template; ?>`;
+  var comment_template = `<?= $comment_template; ?>`;
 </script>
-<script src="minify-js/single_course.js"></script>
+<script src="JS/single_course.js"></script>
+<script>
+  let commentContent =
+    `<h2 class="comment-title"> Comments </h2>`
+
+
+  function openComments(item_id) {
+    let insert_comment_form = `
+    <form class="comment-form" onsubmit="return false">
+    <input type="hidden" name="item_id" value="${item_id}">
+    <input type="text" name="comment_title" placeholder="Comment title">
+    <textarea name="comment_message" placeholder="Here you can add your comment"></textarea>
+    <input onclick="post_comment(${item_id})" class="btn comments-btn" type="submit" value="publish"
+    </form>
+    `
+    document.querySelector(".modal").innerHTML = commentContent
+    document.querySelector(".modal").innerHTML += insert_comment_form
+    var comment_template_copy = comment_template;
+    (async function fetchingData() {
+      var jResponse = await fetch(`php/mongodb/read_comments.php?id=${item_id}`);
+      var jData = await jResponse.json();
+      console.log(jData);
+      for (i = 0; i < jData.length; i++) {
+        comment_template_title = comment_template.replace(
+          "::Title::",
+          jData[i].title
+        );
+        comment_template_message = comment_template_title.replace(
+          "::message::",
+          jData[i].message
+        );
+        comment_template_date = comment_template_message.replace(
+          "::Date::",
+          jData[i].publish_date
+        );
+        document.querySelector(".modal").innerHTML += comment_template_date;
+
+      }
+    })();
+
+  }
+
+  function post_comment(item_id) {
+    var oForm = document.querySelector(".comment-form");
+    (async function() {
+      var id = event.target.dataset.toedit;
+      console.log(id);
+      var jConnection = await fetch("php/mongodb/insert_comment.php", {
+        method: "POST",
+        body: new FormData(oForm)
+      });
+      openComments(item_id)
+    })();
+  }
+</script>
