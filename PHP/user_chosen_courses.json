@@ -1,0 +1,36 @@
+[
+    {
+        "course_id": "89",
+        "user_id": "28",
+        "start_date": "2020-06-13 13:04:17",
+        "progress": "0.00",
+        "course_name": "NoSQL databases",
+        "course_desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+        "published_date": "2020-06-13 13:04:17",
+        "no_of_paparticipants": "12",
+        "author_id": "1",
+        "email": "m@m.com",
+        "first_name": "",
+        "last_name": "",
+        "password": "$2y$10$td0gKYeCcS6fC\/CdYXlU3.lAEmuKqa3ZmUYuB2tZ\/46kZB.3uslIW",
+        "school": null,
+        "reg_date": "2020-06-11 11:02:06"
+    },
+    {
+        "course_id": "110",
+        "user_id": "28",
+        "start_date": "2020-06-11 11:12:48",
+        "progress": "50.00",
+        "course_name": "SQL Basics",
+        "course_desc": "Are you a beginner web developer? Do you feel lost with all this information about the modern websites using databases as the source of their content? It is very possible that you are in the right place. The following course is dedicated to students who have already started coding their first websites and would like to learn more about how to handle the more complex data .The course starts with the introduction of the basic SQL syntaxes and shows how to connect the database with the front end.                   ",
+        "published_date": "2020-06-11 11:09:11",
+        "no_of_paparticipants": "14",
+        "author_id": "1",
+        "email": "m@m.com",
+        "first_name": "",
+        "last_name": "",
+        "password": "$2y$10$td0gKYeCcS6fC\/CdYXlU3.lAEmuKqa3ZmUYuB2tZ\/46kZB.3uslIW",
+        "school": null,
+        "reg_date": "2020-06-11 11:02:06"
+    }
+]

@@ -56,3 +56,10 @@ article header h3 {
 article p {
   white-space: pre-wrap;
 }
+
+.white {
+  background-color: white;
+}
+.single-course-list {
+  padding-bottom: 100px;
+}

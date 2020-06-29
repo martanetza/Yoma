@@ -98,7 +98,7 @@ try {
                 foreach ($items_rows as $row) :
                 ?>
 
-                  <div onclick="fetchSingleItemContent(<?= $row->item_id; ?>)" class="item-list-element">
+                  <div onclick="fetchSingleItemContent(<?= $row->item_id; ?>)" class="item-list-element element-<?= $row->item_id; ?>">
                     <div><?= $row->item_title; ?></div>
                     <i class="fas fa-arrow-right"></i>
                   </div>
@@ -206,4 +206,6 @@ try {
       openComments(item_id)
     })();
   }
+
+  // script applying color
 </script>

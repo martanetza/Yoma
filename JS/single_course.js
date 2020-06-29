@@ -1,5 +1,5 @@
 document.querySelector(".module-list-element-content").classList.add("show");
-
+document.querySelector(".item-list-element").classList.add("white");
 function openContent(moduleId, locked) {
   console.log(event.target);
   if (locked == 0) {
@@ -7,9 +7,14 @@ function openContent(moduleId, locked) {
       .querySelector("#content-module-" + moduleId)
       .classList.toggle("show");
   }
+  console.log(document.querySelector("#content-module-" + moduleId + " div"));
 }
 
 function fetchSingleItemContent(itemId) {
+  document.querySelectorAll(".item-list-element").forEach((e) => {
+    e.classList.remove("white");
+  });
+  document.querySelector(".element-" + itemId).classList.add("white");
   async function fetchingData() {
     var jResponse = await fetch(`PHP/get_single_item.php?item_id=${itemId}`);
     var jData = await jResponse.json();
